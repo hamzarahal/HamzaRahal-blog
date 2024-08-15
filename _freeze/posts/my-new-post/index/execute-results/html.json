@@ -1,0 +1,15 @@
+{
+  "hash": "57ef84d3770998767b0a8638f723ce3a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"My new post\"\nauthor: \"Hamza Rahal\"\ndate: \"2024-08-15\"\ncategories: [thoughts]\nimage: \"Me.jpg\"\n---\n\n\nTest Test\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

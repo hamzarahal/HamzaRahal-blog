@@ -1,0 +1,13 @@
+---
+title: "My new post"
+author: "Hamza Rahal"
+date: "2024-08-15"
+categories: [thoughts]
+image: "Me.jpg"
+---
+
+Test Test
+
+```{r}
+1 + 1
+```
