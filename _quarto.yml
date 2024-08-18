@@ -3,18 +3,40 @@ project:
   output-dir: docs
 
 website:
-  title: "HamzaRahal"
+  title: "Hamza Rahal"
+  favicon: "favicon.jpeg"
+  
+  page-footer: 
+    left: "Copyright 2023, Hamza Rahal"
+    background: "lightgrey"
+  
   navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: About
+        href: about.qmd
+      - text: Projects
+        href: projects.qmd
+   
     right:
-      - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/hamzarahal
       - icon: twitter
-        href: https://twitter.com
+        href: https://x.com/HamzaRahal01
+      - icon: linkedin
+        href: https://www.linkedin.com/in/hamza-rahal-18482261/
+      - icon: youtube
+        href: https://www.youtube.com/@hamzarahal3341
+        
 format:
   html:
-    theme: cosmo
+    theme: 
+      light: cosmo
+      dark: darkly
     css: styles.css
+execute:
+  echo: false
 
 editor: visual
 

@@ -1,6 +1,6 @@
 ---
-title: "About"
-image: profile.jpg
+title: "Hamza Rahal"
+image: Me.jpg
 about:
   template: jolla
   links:
@@ -13,7 +13,17 @@ about:
     - icon: github
       text: Github
       href: https://github.com
+    - icon: youtube
+      text: Youtube
+      href: https://youtube.com
+    - icon: Contact me
+      text: Contact me
+      href: mailto:rahal.hmza@yahoo.fr
 
 ---
 
-About this blog
+## About me
+---
+
+I am a professional Statistical Programmer/Analyst with 10+ years of pharma industry experience in Statistical Programming and Clinical data analysis (using SAS/R) with study experience spanning the specification, production and validation of CDISC compliant datasets (SDTM & ADaM) along with TFLs. My experience covers Phase I-IV activities and multiple therapeutic areas as well as clinical data process improvement and standards implementation. \
+Extremely driven and goal orientated striving to push my team and company forward and adopting a lifelong learning mindset in the fast moving world of Data and AI, committed to stay on the cutting edge of the field

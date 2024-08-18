@@ -9,7 +9,7 @@
 <meta name="author" content="Hamza Rahal">
 <meta name="dcterms.date" content="2024-08-15">
 
-<title>HamzaRahal - My new post</title>
+<title>Hamza Rahal - Essential Coding Best Practices for Clinical R programmer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -66,15 +32,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../favicon.jpeg" rel="icon" type="image/jpeg">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">HamzaRahal</span>
+    <span class="navbar-title">Hamza Rahal</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -123,24 +92,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/hamzarahal"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://x.com/HamzaRahal01"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/hamza-rahal-18482261/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@hamzarahal3341"> <i class="bi bi-youtube" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -149,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">My new post</h1>
+      <h1 class="title">Essential Coding Best Practices for Clinical R programmer</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">thoughts</div>
               </div>
@@ -188,9 +178,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Test Test</p>
+<p>Almost of big pharmaceutical companies and CROs typically have many programmers, data managers and statisticians producing trial analysis and reporting programs. Each of these has their own style in programming. Unfortunately, such a large variety in program styles can lead to problems in the quality, readability, verifiability and maintainability of the program code. Establishing a central standard, or guideline, for good programming practices (GPP) is therefore a necessary first step for large companies.</p>
+<p>R programming is becoming a powerful tool for data analysis, statistical computing, and data visualization for pharma and clinical research industry. Whether you’re a seasoned data scientist or just starting your journey in clinical data analytics and programming, adhering to best practices in R is crucial for writing efficient, readable, and maintainable code.</p>
+<p>Once the project design is ready, it’s the programmers’ job to develop the building blocks. While programming, it’s beneficial to follow certain conventions that increase the worth of the programs. These conventions are categorized into four criteria:</p>
+<p>&nbsp;<strong>Readability</strong>: Makes your programs easily understandable, increasing the programmer’s efficiency.</p>
+<p>&nbsp;<strong>Efficiency</strong>: Reduces the usage of resources like memory and CPU processing time, increasing the computer’s efficiency.</p>
+<p><strong>Reusability</strong>: Makes your programs reusable by separating frequently used logic from code and creating a separate program /user-defined function.</p>
+<p><strong>Robustability</strong>: Makes your programs handle a wide variety of scenarios and does not crash. The program should be executable on a wider range of platforms.</p>
+<p>Below, we explore key best practices to elevate your clinical R coding skills.</p>
+<p><strong>1. Follow a Consistent Naming Convention</strong></p>
+<ul>
+<li><p><strong>Variable and Function Names</strong>: Use clear and descriptive names for variables and functions. Adopting a naming convention like snake_case (e.g., data_frame, calculate_mean) or camelCase (e.g., dataFrame, calculateMean) enhances readability. Consistency is key; choose one style and stick with it throughout your project.</p></li>
+<li><p><strong>Avoid Abbreviations</strong>: While it may be tempting to use short abbreviations, they can lead to confusion. Instead, opt for fully descriptive names that convey the variable or function’s purpose.</p></li>
+</ul>
+<p><strong>2. Write Modular Code</strong></p>
+<ul>
+<li><p><strong>Function Use</strong>: Break down complex tasks into smaller, reusable functions. This modular approach not only simplifies your code but also makes it easier to test and debug. Each function should perform a single task and be named accordingly.</p></li>
+<li><p><strong>Script Organization</strong>: Organize your scripts by logically grouping related functions and code blocks. Consider separating data loading, processing, and analysis into different scripts or sections within a script.</p></li>
+</ul>
+<p><strong>3. Document Your Code</strong></p>
+<ul>
+<li><p><strong>Comments</strong>: Use comments to explain the purpose of complex code blocks or functions. While R code can be self-explanatory with good naming conventions, comments provide valuable context, especially for future you or collaborators.</p></li>
+<li><p><strong>Roxygen for Documentation</strong>: For functions, consider using Roxygen comments to create detailed documentation. Roxygen allows you to generate documentation files directly from your code, making it easier for others (and yourself) to understand and use your functions.</p></li>
+</ul>
+<p><strong>4. Adopt the Tidyverse Style</strong></p>
+<ul>
+<li><p><strong>Tidy Data Principles</strong>: Follow the principles of tidy data where each variable is a column, each observation is a row, and each type of observational unit is a table. This makes data manipulation and analysis more intuitive and aligns with the powerful functions provided by the tidyverse suite.</p></li>
+<li><p><strong>Pipe Operator (%&gt;%)</strong>: Leverage the pipe operator to create clear and readable data transformation pipelines. The pipe operator enables a left-to-right flow of data through functions, reducing the need for nested function calls and making your code easier to follow.</p></li>
+</ul>
+<p><strong>5. Error Handling and Debugging</strong></p>
+<ul>
+<li><p><strong>Use tryCatch for Robust Code</strong>: Implement tryCatch to handle errors gracefully. This ensures that your code can handle unexpected inputs or issues without crashing, allowing for better control over error messages and debugging.</p></li>
+<li><p><strong>Interactive Debugging</strong>: Utilize R’s interactive debugging tools such as browser(), traceback(), and debug(). These tools allow you to step through your code line by line, inspect variables, and understand where and why errors occur.</p></li>
+</ul>
+<p><strong>6. Optimize Performance</strong></p>
+<ul>
+<li><p><strong>Vectorization</strong>: R is optimized for vectorized operations, meaning operations on entire vectors (arrays) are faster than loops. Whenever possible, replace loops with vectorized functions like apply, sapply, or the purrr package functions.</p></li>
+<li><p><strong>Profiling and Benchmarking</strong>: Use system.time(), Rprof(), or the microbenchmark package to profile and benchmark your code. Identifying bottlenecks helps in optimizing performance-critical sections.</p></li>
+</ul>
+<p><strong>7. Version Control</strong></p>
+<ul>
+<li><p><strong>Use Git</strong>: Track changes in your code with version control systems like Git. This not only helps in managing versions and collaborative work but also ensures that you can revert to earlier versions if something goes wrong.</p></li>
+<li><p><strong>Commit Regularly</strong>: Make frequent commits with meaningful messages. This practice makes it easier to follow your development process and understand changes over time.</p></li>
+</ul>
+<p><strong>8. Adopt a Linter</strong></p>
+<ul>
+<li><strong>Lint Your Code</strong>: Use linters like lintr to automatically check your R code for syntax errors, potential bugs, and stylistic issues. Linters help enforce coding standards and improve code quality by catching issues early in the development process.</li>
+</ul>
+<p><strong>9. Test Your Code</strong></p>
+<ul>
+<li><p><strong>Automated Testing</strong>: Implement automated testing using frameworks like testthat. Writing tests ensures that your functions work as expected and helps prevent bugs from being introduced when making changes.</p></li>
+<li><p><strong>Test Coverage</strong>: Aim for high test coverage, meaning most of your code is executed by tests. This provides greater confidence in the reliability of your code.</p></li>
+</ul>
+<p><strong>10. Stay Updated and Continue Learning</strong></p>
+<ul>
+<li><strong>Community and Resources</strong>: The R community is vibrant and ever-evolving. Engage with it through forums, blogs, and attending conferences like useR! or RStudio::conf. Continuous learning through new packages, techniques, and best practices is vital in keeping your skills sharp.</li>
+</ul>
+<p>By following these best practices, you’ll write R code that is not only functional but also elegant, efficient, and maintainable. Whether working on a solo project or collaborating with a team, these guidelines will help you produce high-quality R programs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -219,6 +264,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -609,6 +798,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2023, Hamza Rahal</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
