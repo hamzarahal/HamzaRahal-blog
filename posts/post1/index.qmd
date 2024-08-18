@@ -84,7 +84,3 @@ Below, we explore key best practices to elevate your clinical R coding skills.
 -   **Community and Resources**: The R community is vibrant and ever-evolving. Engage with it through forums, blogs, and attending conferences like useR! or RStudio::conf. Continuous learning through new packages, techniques, and best practices is vital in keeping your skills sharp.
 
 By following these best practices, you’ll write R code that is not only functional but also elegant, efficient, and maintainable. Whether working on a solo project or collaborating with a team, these guidelines will help you produce high-quality R programs.
-
-```{r}
-1 + 1
-```
