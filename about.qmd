@@ -21,7 +21,7 @@ about:
       href: mailto:rahal.hmza@yahoo.fr
 ---
 
-## \## About me
+## About me
 
 I am a professional Statistical Programmer/Analyst with 10+ years of pharma industry experience in Statistical Programming and Clinical data analysis (using SAS/R) with study experience spanning the specification, production and validation of CDISC compliant datasets (SDTM & ADaM) along with TFLs. My experience covers Phase I-IV activities and multiple therapeutic areas as well as clinical data process improvement and standards implementation.
 

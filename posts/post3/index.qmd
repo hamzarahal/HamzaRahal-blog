@@ -6,6 +6,8 @@ categories: [thoughts]
 image: "SASR.png"
 ---
 
+![](SASR.png){fig-align="center"}
+
 In the evolving landscape of clinical programming, the debate between R and SAS continues to spark discussions among statistical programmers. However, instead of viewing these powerful tools as competitors, we should recognize the potential for them to complement each other in clinical research. Here’s why R and SAS should coexist and how statistical programmers can harness the strengths of both to enhance their work.
 
 **1. R and SAS: Strengths and Synergies**
