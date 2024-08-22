@@ -5,25 +5,27 @@ about:
   template: jolla
   links:
     - icon: twitter
-      text: Twitter
-      href: https://twitter.com
+      text: X
+      href: https://x.com/HamzaRahal01
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/hamza-rahal-18482261/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/hamzarahal
     - icon: youtube
       text: Youtube
-      href: https://youtube.com
+      href: https://www.youtube.com/@hamzarahal3341
     - icon: Contact me
       text: Contact me
       href: mailto:rahal.hmza@yahoo.fr
-
 ---
 
-## About me
----
+## \## About me
 
-I am a professional Statistical Programmer/Analyst with 10+ years of pharma industry experience in Statistical Programming and Clinical data analysis (using SAS/R) with study experience spanning the specification, production and validation of CDISC compliant datasets (SDTM & ADaM) along with TFLs. My experience covers Phase I-IV activities and multiple therapeutic areas as well as clinical data process improvement and standards implementation. \
+I am a professional Statistical Programmer/Analyst with 10+ years of pharma industry experience in Statistical Programming and Clinical data analysis (using SAS/R) with study experience spanning the specification, production and validation of CDISC compliant datasets (SDTM & ADaM) along with TFLs. My experience covers Phase I-IV activities and multiple therapeutic areas as well as clinical data process improvement and standards implementation.
+
+I have been actively involved in training activities within the medical research field for a professional training center. My experience includes delivering comprehensive training on a variety of statistical software and conducted workshops, seminars, and one-on-one training sessions on SPSS, R, Stata, and SAS, power bi focusing on the specific needs of researchers and trainees from different fields.
+
+\
 Extremely driven and goal orientated striving to push my team and company forward and adopting a lifelong learning mindset in the fast moving world of Data and AI, committed to stay on the cutting edge of the field
