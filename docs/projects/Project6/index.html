@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hamza Rahal">
+<meta name="dcterms.date" content="2024-06-05">
+
+<title>Hamza Rahal - Classify Suspected Infection in Patients</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Hamza Rahal</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/hamzarahal"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/HamzaRahal01"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/hamza-rahal-18482261/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@hamzarahal3341"> <i class="bi bi-youtube" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Classify Suspected Infection in Patients</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">project</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hamza Rahal </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 5, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="this-patient-may-have-sepsis" class="level2">
+<h2 class="anchored" data-anchor-id="this-patient-may-have-sepsis">1. This patient may have sepsis</h2>
+<p>Sepsis is a deadly syndrome where a patient has a severe infection that causes organ failure. The sooner septic patients are treated, the more likely they are to survive, but sepsis can be challenging to recognize. It may be possible to use hospital data to develop machine learning models that could flag patients who are likely to be septic. However, before we develop predictive algorithms, we need a reliable method to determine patients who are septic. One component of sepsis is a severe infection.</p>
+<p>In this project, we will use two weeks of hospital electronic health record (EHR) data to find out which patients had a severe infection according to four criteria. We will look into the data to see if a doctor ordered a blood test to look for bacteria (a blood culture) and gave the patient a series of intervenous antibiotics.</p>
+<p>Let’s get started!</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>antibioticDT <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">'antibioticDT.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 30 rows</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(antibioticDT, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    patient_id day_given antibiotic_type  route
+         &lt;int&gt;     &lt;int&gt;          &lt;char&gt; &lt;char&gt;
+ 1:          1         2   ciprofloxacin     IV
+ 2:          1         4   ciprofloxacin     IV
+ 3:          1         6   ciprofloxacin     IV
+ 4:          1         7     doxycycline     IV
+ 5:          1         9     doxycycline     IV
+ 6:          1        15      penicillin     IV
+ 7:          1        16     doxycycline     IV
+ 8:          1        18   ciprofloxacin     IV
+ 9:          8         1     doxycycline     PO
+10:          8         2      penicillin     IV
+11:          8         3     doxycycline     IV
+12:          8         6     doxycycline     PO
+13:          8         8      penicillin     PO
+14:          8        12      penicillin     IV
+15:          9         8     doxycycline     IV
+16:          9        12     doxycycline     PO
+17:         12         4     doxycycline     PO
+18:         12         9     doxycycline     IV
+19:         16         1     doxycycline     IV
+20:         16         4     amoxicillin     IV
+21:         19         3     doxycycline     PO
+22:         19         5     amoxicillin     IV
+23:         19         6   ciprofloxacin     IV
+24:         19        10     doxycycline     IV
+25:         19        12      penicillin     IV
+26:         23         1     doxycycline     IV
+27:         23         1      penicillin     IV
+28:         23         3     amoxicillin     IV
+29:         23         3   ciprofloxacin     IV
+30:         23         3     doxycycline     IV
+    patient_id day_given antibiotic_type  route</code></pre>
+</div>
+</div>
+</section>
+<section id="which-antibiotics-are-new" class="level2">
+<h2 class="anchored" data-anchor-id="which-antibiotics-are-new">2. Which antibiotics are “new”?</h2>
+<p>These data represent all drugs administered in a hospital over two weeks. Each row represents one time a patient was given an antibiotic. The variables include the patient identification number, the day the drug was administered, the name of the antibiotic, and how it was administered. For example, patient “8” received doxycycline by mouth on the first day of their stay.</p>
+<p>We will identify patients with a serious infection using the following criteria.</p>
+<p><strong>Criteria for Suspected Infection</strong><a href="https://www.ncbi.nlm.nih.gov/pubmed/28903154">*</a></p>
+<ol type="1">
+<li><p>The patient receives antibiotics for a sequence of four days, with gaps of one day allowed.</p></li>
+<li><p>The sequence must start with a new antibiotic, defined as an antibiotic type that was not given in the previous two days.</p></li>
+<li><p>The sequence must start within two days of a blood culture.</p></li>
+<li><p>There must be at least one intervenous (I.V.) antibiotic within the +/-2 day window.</p></li>
+</ol>
+<p>Let’s start with the second item by finding which rows represent “new antibiotics”. We will determine if each antibiotic was given to the patient in the prior two days. We’ll visualize this task by looking at the data sorted by id, antibiotic type, and day.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the data and examine the first 40 rows</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setorder</span>(<span class="at">x =</span> antibioticDT, patient_id, antibiotic_type, day_given)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>antibioticDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    patient_id day_given antibiotic_type  route
+         &lt;int&gt;     &lt;int&gt;          &lt;char&gt; &lt;char&gt;
+ 1:          1         2   ciprofloxacin     IV
+ 2:          1         4   ciprofloxacin     IV
+ 3:          1         6   ciprofloxacin     IV
+ 4:          1        18   ciprofloxacin     IV
+ 5:          1         7     doxycycline     IV
+ 6:          1         9     doxycycline     IV
+ 7:          1        16     doxycycline     IV
+ 8:          1        15      penicillin     IV
+ 9:          8         1     doxycycline     PO
+10:          8         3     doxycycline     IV
+11:          8         6     doxycycline     PO
+12:          8         2      penicillin     IV
+13:          8         8      penicillin     PO
+14:          8        12      penicillin     IV
+15:          9         8     doxycycline     IV
+16:          9        12     doxycycline     PO
+17:         12         4     doxycycline     PO
+18:         12         9     doxycycline     IV
+19:         16         4     amoxicillin     IV
+20:         16         1     doxycycline     IV
+21:         19         5     amoxicillin     IV
+22:         19         6   ciprofloxacin     IV
+23:         19         3     doxycycline     PO
+24:         19        10     doxycycline     IV
+25:         19        12      penicillin     IV
+26:         23         3     amoxicillin     IV
+27:         23         8     amoxicillin     IV
+28:         23        10     amoxicillin     PO
+29:         23         3   ciprofloxacin     IV
+30:         23         5   ciprofloxacin     PO
+31:         23        16   ciprofloxacin     IV
+32:         23         1     doxycycline     IV
+33:         23         3     doxycycline     IV
+34:         23         4     doxycycline     IV
+35:         23         5     doxycycline     IV
+36:         23         6     doxycycline     IV
+37:         23         6     doxycycline     PO
+38:         23         9     doxycycline     PO
+39:         23        10     doxycycline     IV
+40:         23        11     doxycycline     PO
+    patient_id day_given antibiotic_type  route</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use shift to calculate the last day a particular drug was administered</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>antibioticDT[ , last_administration_day <span class="sc">:</span><span class="er">=</span> <span class="fu">shift</span>(day_given, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"lag"</span>), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(patient_id, antibiotic_type)]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the number of days since the drug was last administered</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>antibioticDT[ , days_since_last_admin <span class="sc">:</span><span class="er">=</span> day_given <span class="sc">-</span> last_administration_day]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create antibiotic_new with an initial value of one, then reset it to zero as needed</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>antibioticDT[, antibiotic_new <span class="sc">:</span><span class="er">=</span> <span class="dv">1</span>]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>antibioticDT[days_since_last_admin <span class="sc">&lt;=</span> <span class="dv">2</span>, antibiotic_new <span class="sc">:</span><span class="er">=</span> <span class="dv">0</span>]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>antibioticDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    patient_id day_given antibiotic_type  route last_administration_day
+         &lt;int&gt;     &lt;int&gt;          &lt;char&gt; &lt;char&gt;                   &lt;int&gt;
+ 1:          1         2   ciprofloxacin     IV                      NA
+ 2:          1         4   ciprofloxacin     IV                       2
+ 3:          1         6   ciprofloxacin     IV                       4
+ 4:          1        18   ciprofloxacin     IV                       6
+ 5:          1         7     doxycycline     IV                      NA
+ 6:          1         9     doxycycline     IV                       7
+ 7:          1        16     doxycycline     IV                       9
+ 8:          1        15      penicillin     IV                      NA
+ 9:          8         1     doxycycline     PO                      NA
+10:          8         3     doxycycline     IV                       1
+11:          8         6     doxycycline     PO                       3
+12:          8         2      penicillin     IV                      NA
+13:          8         8      penicillin     PO                       2
+14:          8        12      penicillin     IV                       8
+15:          9         8     doxycycline     IV                      NA
+16:          9        12     doxycycline     PO                       8
+17:         12         4     doxycycline     PO                      NA
+18:         12         9     doxycycline     IV                       4
+19:         16         4     amoxicillin     IV                      NA
+20:         16         1     doxycycline     IV                      NA
+21:         19         5     amoxicillin     IV                      NA
+22:         19         6   ciprofloxacin     IV                      NA
+23:         19         3     doxycycline     PO                      NA
+24:         19        10     doxycycline     IV                       3
+25:         19        12      penicillin     IV                      NA
+26:         23         3     amoxicillin     IV                      NA
+27:         23         8     amoxicillin     IV                       3
+28:         23        10     amoxicillin     PO                       8
+29:         23         3   ciprofloxacin     IV                      NA
+30:         23         5   ciprofloxacin     PO                       3
+31:         23        16   ciprofloxacin     IV                       5
+32:         23         1     doxycycline     IV                      NA
+33:         23         3     doxycycline     IV                       1
+34:         23         4     doxycycline     IV                       3
+35:         23         5     doxycycline     IV                       4
+36:         23         6     doxycycline     IV                       5
+37:         23         6     doxycycline     PO                       6
+38:         23         9     doxycycline     PO                       6
+39:         23        10     doxycycline     IV                       9
+40:         23        11     doxycycline     PO                      10
+    patient_id day_given antibiotic_type  route last_administration_day
+    days_since_last_admin antibiotic_new
+                    &lt;int&gt;          &lt;num&gt;
+ 1:                    NA              1
+ 2:                     2              0
+ 3:                     2              0
+ 4:                    12              1
+ 5:                    NA              1
+ 6:                     2              0
+ 7:                     7              1
+ 8:                    NA              1
+ 9:                    NA              1
+10:                     2              0
+11:                     3              1
+12:                    NA              1
+13:                     6              1
+14:                     4              1
+15:                    NA              1
+16:                     4              1
+17:                    NA              1
+18:                     5              1
+19:                    NA              1
+20:                    NA              1
+21:                    NA              1
+22:                    NA              1
+23:                    NA              1
+24:                     7              1
+25:                    NA              1
+26:                    NA              1
+27:                     5              1
+28:                     2              0
+29:                    NA              1
+30:                     2              0
+31:                    11              1
+32:                    NA              1
+33:                     2              0
+34:                     1              0
+35:                     1              0
+36:                     1              0
+37:                     0              0
+38:                     3              1
+39:                     1              0
+40:                     1              0
+    days_since_last_admin antibiotic_new</code></pre>
+</div>
+</div>
+</section>
+<section id="looking-at-the-blood-culture-data" class="level2">
+<h2 class="anchored" data-anchor-id="looking-at-the-blood-culture-data">3. Looking at the blood culture data</h2>
+<p>Now let’s look at blood culture data from the same two-week period in this hospital. These data are in <code>blood_cultureDT.csv</code>. Let’s start by reading it into the workspace and having a look at a few rows.</p>
+<p>Each row represents one blood culture and gives the patient’s id and the day the blood culture test occurred. For example, patient “8” had a blood culture on the second day of their hospitalization and again on the thirteenth day. Notice that some patients from the antibiotic dataset are not in this dataset and vice versa. Some patients are in neither because they received neither antibiotics nor a blood culture.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in blood_cultureDT.csv</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>blood_cultureDT <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"blood_cultureDT.csv"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 30 rows</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>blood_cultureDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    patient_id blood_culture_day
+         &lt;int&gt;             &lt;int&gt;
+ 1:          1                 3
+ 2:          1                13
+ 3:          8                 2
+ 4:          8                13
+ 5:         23                 3
+ 6:         39                10
+ 7:         45                 4
+ 8:         45                 9
+ 9:         45                11
+10:         51                 3
+11:         51                 6
+12:         59                 2
+13:         64                 1
+14:         66                 9
+15:         66                10
+16:         69                 2
+17:         69                 6
+18:         69                 7
+19:         69                11
+20:         69                16
+21:         76                 1
+22:         77                 3
+23:         79                 5
+24:         79                11
+25:         79                12
+26:         80                 3
+27:         80                12
+28:         81                 2
+29:        112                 6
+30:        115                 2
+    patient_id blood_culture_day</code></pre>
+</div>
+</div>
+</section>
+<section id="combine-the-antibiotic-data-and-the-blood-culture-data" class="level2">
+<h2 class="anchored" data-anchor-id="combine-the-antibiotic-data-and-the-blood-culture-data">4. Combine the antibiotic data and the blood culture data</h2>
+<p>To find which antibiotics were given close to a blood culture test, we need to combine the drug administration data with the blood culture data. We’ll keep only patients that are still candidates for infection—only those in both data sets.</p>
+<p>A challenge with the data is that some patients had blood cultures on several different days. For each of those days, we will see if there is a sequence of antibiotic days close to them. To accomplish this, in the merge we will match each blood culture to each antibiotic day.</p>
+<p>After sorting the data following the merge, you will see that each patient’s antibiotic sequence repeats for each blood culture day. This repetition allows us to look at each blood culture day and check if it is associated with a qualifying sequence of antibiotics.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge antibioticDT with blood_cultureDT</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>combinedDT <span class="ot">&lt;-</span> <span class="fu">merge</span>(antibioticDT, blood_cultureDT, <span class="at">by =</span> <span class="st">"patient_id"</span>, <span class="at">all =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by patient_id, blood_culture_day, day_given, and antibiotic_type</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setorder</span>(combinedDT, patient_id, blood_culture_day, day_given, antibiotic_type)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print and examine the first 30 rows</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>combinedDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Key: &lt;patient_id&gt;
+    patient_id day_given antibiotic_type  route last_administration_day
+         &lt;int&gt;     &lt;int&gt;          &lt;char&gt; &lt;char&gt;                   &lt;int&gt;
+ 1:          1         2   ciprofloxacin     IV                      NA
+ 2:          1         4   ciprofloxacin     IV                       2
+ 3:          1         6   ciprofloxacin     IV                       4
+ 4:          1         7     doxycycline     IV                      NA
+ 5:          1         9     doxycycline     IV                       7
+ 6:          1        15      penicillin     IV                      NA
+ 7:          1        16     doxycycline     IV                       9
+ 8:          1        18   ciprofloxacin     IV                       6
+ 9:          1         2   ciprofloxacin     IV                      NA
+10:          1         4   ciprofloxacin     IV                       2
+11:          1         6   ciprofloxacin     IV                       4
+12:          1         7     doxycycline     IV                      NA
+13:          1         9     doxycycline     IV                       7
+14:          1        15      penicillin     IV                      NA
+15:          1        16     doxycycline     IV                       9
+16:          1        18   ciprofloxacin     IV                       6
+17:          8         1     doxycycline     PO                      NA
+18:          8         2      penicillin     IV                      NA
+19:          8         3     doxycycline     IV                       1
+20:          8         6     doxycycline     PO                       3
+21:          8         8      penicillin     PO                       2
+22:          8        12      penicillin     IV                       8
+23:          8         1     doxycycline     PO                      NA
+24:          8         2      penicillin     IV                      NA
+25:          8         3     doxycycline     IV                       1
+26:          8         6     doxycycline     PO                       3
+27:          8         8      penicillin     PO                       2
+28:          8        12      penicillin     IV                       8
+29:         23         1     doxycycline     IV                      NA
+30:         23         1      penicillin     IV                      NA
+    patient_id day_given antibiotic_type  route last_administration_day
+    days_since_last_admin antibiotic_new blood_culture_day
+                    &lt;int&gt;          &lt;num&gt;             &lt;int&gt;
+ 1:                    NA              1                 3
+ 2:                     2              0                 3
+ 3:                     2              0                 3
+ 4:                    NA              1                 3
+ 5:                     2              0                 3
+ 6:                    NA              1                 3
+ 7:                     7              1                 3
+ 8:                    12              1                 3
+ 9:                    NA              1                13
+10:                     2              0                13
+11:                     2              0                13
+12:                    NA              1                13
+13:                     2              0                13
+14:                    NA              1                13
+15:                     7              1                13
+16:                    12              1                13
+17:                    NA              1                 2
+18:                    NA              1                 2
+19:                     2              0                 2
+20:                     3              1                 2
+21:                     6              1                 2
+22:                     4              1                 2
+23:                    NA              1                13
+24:                    NA              1                13
+25:                     2              0                13
+26:                     3              1                13
+27:                     6              1                13
+28:                     4              1                13
+29:                    NA              1                 3
+30:                    NA              1                 3
+    days_since_last_admin antibiotic_new blood_culture_day</code></pre>
+</div>
+</div>
+</section>
+<section id="determine-whether-each-row-is-in-window" class="level2">
+<h2 class="anchored" data-anchor-id="determine-whether-each-row-is-in-window">5. Determine whether each row is in-window</h2>
+<p>Now that we have the antibiotic and blood culture data combined, we can test each drug administration against each blood culture to see if it’s “in the window.”</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new variable called drug_in_bcx_window</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>combinedDT[ , </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  drug_in_bcx_window <span class="sc">:</span><span class="er">=</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">as.numeric</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>               day_given <span class="sc">-</span> blood_culture_day <span class="sc">&lt;=</span> <span class="dv">2</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>               <span class="sc">&amp;</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>               day_given <span class="sc">-</span> blood_culture_day <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">2</span>)]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>combinedDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Key: &lt;patient_id&gt;
+   patient_id day_given antibiotic_type  route last_administration_day
+        &lt;int&gt;     &lt;int&gt;          &lt;char&gt; &lt;char&gt;                   &lt;int&gt;
+1:          1         2   ciprofloxacin     IV                      NA
+2:          1         4   ciprofloxacin     IV                       2
+3:          1         6   ciprofloxacin     IV                       4
+4:          1         7     doxycycline     IV                      NA
+5:          1         9     doxycycline     IV                       7
+   days_since_last_admin antibiotic_new blood_culture_day drug_in_bcx_window
+                   &lt;int&gt;          &lt;num&gt;             &lt;int&gt;              &lt;num&gt;
+1:                    NA              1                 3                  1
+2:                     2              0                 3                  1
+3:                     2              0                 3                  0
+4:                    NA              1                 3                  0
+5:                     2              0                 3                  0</code></pre>
+</div>
+</div>
+</section>
+<section id="check-the-i.v.-requirement" class="level2">
+<h2 class="anchored" data-anchor-id="check-the-i.v.-requirement">6. Check the I.V. requirement</h2>
+<p>Now let’s look at the fourth item in the criteria.</p>
+<p><strong>Criteria for Suspected Infection</strong><a href="https://www.ncbi.nlm.nih.gov/pubmed/28903154">*</a></p>
+<ol type="1">
+<li><p>The patient receives antibiotics for a sequence of four days, with gaps of one day allowed.</p></li>
+<li><p>The sequence must start with a new antibiotic, defined as an antibiotic type that was not given in the previous two days.</p></li>
+<li><p>The sequence must start within two days of a blood culture.</p></li>
+<li><p><em>There must be at least one intervenous (I.V.) antibiotic within the +/-2 day window.</em></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable indicating if there was at least one I.V. drug given in the window</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>combinedDT[ , </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  any_iv_in_bcx_window <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">any</span>(route <span class="sc">==</span> <span class="st">'IV'</span> <span class="sc">&amp;</span> drug_in_bcx_window <span class="sc">==</span> <span class="dv">1</span>)),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(patient_id, blood_culture_day)]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Exclude rows in which the blood_culture_day does not have any I.V. drugs in window </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>combinedDT <span class="ot">&lt;-</span> combinedDT[any_iv_in_bcx_window <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>combinedDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Key: &lt;patient_id&gt;
+   patient_id day_given antibiotic_type  route last_administration_day
+        &lt;int&gt;     &lt;int&gt;          &lt;char&gt; &lt;char&gt;                   &lt;int&gt;
+1:          1         2   ciprofloxacin     IV                      NA
+2:          1         4   ciprofloxacin     IV                       2
+3:          1         6   ciprofloxacin     IV                       4
+4:          1         7     doxycycline     IV                      NA
+5:          1         9     doxycycline     IV                       7
+   days_since_last_admin antibiotic_new blood_culture_day drug_in_bcx_window
+                   &lt;int&gt;          &lt;num&gt;             &lt;int&gt;              &lt;num&gt;
+1:                    NA              1                 3                  1
+2:                     2              0                 3                  1
+3:                     2              0                 3                  0
+4:                    NA              1                 3                  0
+5:                     2              0                 3                  0
+   any_iv_in_bcx_window
+                  &lt;num&gt;
+1:                    1
+2:                    1
+3:                    1
+4:                    1
+5:                    1</code></pre>
+</div>
+</div></li>
+</ol>
+</section>
+<section id="find-the-first-day-of-possible-sequences" class="level2">
+<h2 class="anchored" data-anchor-id="find-the-first-day-of-possible-sequences">7. Find the first day of possible sequences</h2>
+<p>We’re getting close! Let’s review the criteria again.</p>
+<p><strong>Criteria for Suspected Infection</strong><a href="https://www.ncbi.nlm.nih.gov/pubmed/28903154">*</a></p>
+<ol type="1">
+<li><p>The patient receives antibiotics for a sequence of four days, with gaps of one day allowed.</p></li>
+<li><p>The sequence must start with a new antibiotic, defined as an antibiotic type that was not given in the previous two days.</p></li>
+<li><p>The sequence must start within two days of a blood culture.</p></li>
+<li><p>There must be at least one intervenous (I.V.) antibiotic within the +/-2 day window.</p></li>
+</ol>
+<p>Let’s assess the first criterion by finding the first day of possible 4-day qualifying sequences.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new variable called day_of_first_new_abx_in_window</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>combinedDT[,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>          day_of_first_new_abx_in_window <span class="sc">:</span><span class="er">=</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>           day_given[antibiotic_new <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> drug_in_bcx_window <span class="sc">==</span> <span class="dv">1</span>][<span class="dv">1</span>],</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>           by <span class="ot">=</span> .(patient_id, blood_culture_day)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>          ]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where the day is before this first qualifying day</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>combinedDT <span class="ot">&lt;-</span> combinedDT[day_given <span class="sc">&gt;=</span> day_of_first_new_abx_in_window]</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>combinedDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Key: &lt;patient_id&gt;
+   patient_id day_given antibiotic_type  route last_administration_day
+        &lt;int&gt;     &lt;int&gt;          &lt;char&gt; &lt;char&gt;                   &lt;int&gt;
+1:          1         2   ciprofloxacin     IV                      NA
+2:          1         4   ciprofloxacin     IV                       2
+3:          1         6   ciprofloxacin     IV                       4
+4:          1         7     doxycycline     IV                      NA
+5:          1         9     doxycycline     IV                       7
+   days_since_last_admin antibiotic_new blood_culture_day drug_in_bcx_window
+                   &lt;int&gt;          &lt;num&gt;             &lt;int&gt;              &lt;num&gt;
+1:                    NA              1                 3                  1
+2:                     2              0                 3                  1
+3:                     2              0                 3                  0
+4:                    NA              1                 3                  0
+5:                     2              0                 3                  0
+   any_iv_in_bcx_window day_of_first_new_abx_in_window
+                  &lt;num&gt;                          &lt;int&gt;
+1:                    1                              2
+2:                    1                              2
+3:                    1                              2
+4:                    1                              2
+5:                    1                              2</code></pre>
+</div>
+</div>
+</section>
+<section id="simplify-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="simplify-the-data">8. Simplify the data</h2>
+<p>The first criterion is: <em>The patient receives antibiotics for a sequence of four days, with gaps of one day allowed.</em></p>
+<p>We’ve pinned down the first day of possible sequences in the previous task. Now we have to check for four-day sequences. We don’t need the drug type (name); we need the days the antibiotics were administered.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new data.table containing only patient_id, blood_culture_day, and day_given</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>simplified_data <span class="ot">&lt;-</span> combinedDT[, .(patient_id, blood_culture_day, day_given)]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicate rows</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>simplified_data <span class="ot">&lt;-</span> <span class="fu">unique</span>(simplified_data)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>simplified_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Key: &lt;patient_id&gt;
+   patient_id blood_culture_day day_given
+        &lt;int&gt;             &lt;int&gt;     &lt;int&gt;
+1:          1                 3         2
+2:          1                 3         4
+3:          1                 3         6
+4:          1                 3         7
+5:          1                 3         9</code></pre>
+</div>
+</div>
+</section>
+<section id="extract-first-four-rows-for-each-blood-culture" class="level2">
+<h2 class="anchored" data-anchor-id="extract-first-four-rows-for-each-blood-culture">9. Extract first four rows for each blood culture</h2>
+<p>To check for four-day sequences, let’s pull out the first four days (rows) for each patient/blood culture combination. Some patients will have less than four antibiotic days. We’ll remove them first.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the antibiotic days within each patient/blood culture day combination</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>simplified_data[, num_antibiotic_days <span class="sc">:</span><span class="er">=</span> .N, by <span class="ot">=</span> .(patient_id, blood_culture_day)]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove blood culture days with less than four rows </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>simplified_data <span class="ot">&lt;-</span> simplified_data[num_antibiotic_days <span class="sc">&gt;=</span> <span class="dv">4</span>]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first four days for each blood culture</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>first_four_days <span class="ot">&lt;-</span> simplified_data[, .SD[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], by <span class="ot">=</span> .(patient_id, blood_culture_day)]</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>first_four_days[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   patient_id blood_culture_day day_given num_antibiotic_days
+        &lt;int&gt;             &lt;int&gt;     &lt;int&gt;               &lt;int&gt;
+1:          1                 3         2                   8
+2:          1                 3         4                   8
+3:          1                 3         6                   8
+4:          1                 3         7                   8
+5:          8                 2         1                   6</code></pre>
+</div>
+</div>
+</section>
+<section id="consecutive-sequence" class="level2">
+<h2 class="anchored" data-anchor-id="consecutive-sequence">10. Consecutive sequence</h2>
+<p>Now we need to check whether each four-day sequence qualifies by having no gaps of more than one day.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the indicator for consecutive sequence</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>first_four_days[,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>               four_in_seq <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">max</span>(<span class="fu">diff</span>(day_given)) <span class="sc">&lt;</span> <span class="dv">3</span>), by <span class="ot">=</span> .(patient_id, blood_culture_day)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>               ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="select-the-patients-who-meet-criteria" class="level2">
+<h2 class="anchored" data-anchor-id="select-the-patients-who-meet-criteria">11. Select the patients who meet criteria</h2>
+<p>A patient would meet the criteria if any of their blood cultures were accompanied by a qualifying sequence of antibiotics. Now that we’ve determined which each blood culture qualify let’s select the patients who meet the criteria.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the rows which have four_in_seq equal to 1</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>suspected_infection <span class="ot">&lt;-</span> first_four_days[four_in_seq <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Retain only the patient_id column</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>suspected_infection <span class="ot">&lt;-</span> suspected_infection[, .(patient_id)]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>suspected_infection <span class="ot">&lt;-</span> <span class="fu">unique</span>(suspected_infection)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make an infection indicator</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>suspected_infection[, infection <span class="sc">:</span><span class="er">=</span> <span class="dv">1</span>]</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>suspected_infection[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   patient_id infection
+        &lt;int&gt;     &lt;num&gt;
+1:          1         1
+2:         23         1
+3:         64         1
+4:         76         1
+5:        164         1</code></pre>
+</div>
+</div>
+</section>
+<section id="find-the-prevalence-of-sepsis" class="level2">
+<h2 class="anchored" data-anchor-id="find-the-prevalence-of-sepsis">12. Find the prevalence of sepsis</h2>
+<p>In this project, we used two EHR datasets to flag patients who were suspected of having a serious infection. We also got a <code>data.table</code> workout!</p>
+<p>So far, we’ve been looking at records of all antibiotics administered and blood cultures that occurred over two weeks at a particular hospital. However, not all patients who were hospitalized over this period are represented in <code>combinedDT</code> because not all of them took antibiotics or had blood culture tests. We have to read in and merge the rest of the patient information to see what percentage of patients at the hospital might have had a serious infection.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in "all_patients.csv"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>all_patientsDT <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"all_patients.csv"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge this with the infection flag data</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>all_patientsDT <span class="ot">&lt;-</span> <span class="fu">merge</span>(all_patientsDT, suspected_infection, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set any missing values of the infection flag to 0</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>all_patientsDT <span class="ot">&lt;-</span> all_patientsDT[<span class="fu">is.na</span>(infection), infection <span class="sc">:</span><span class="er">=</span> <span class="dv">0</span>]</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>all_patientsDT[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Key: &lt;patient_id&gt;
+    patient_id infection
+         &lt;int&gt;     &lt;num&gt;
+ 1:          1         1
+ 2:          5         0
+ 3:          8         0
+ 4:          9         0
+ 5:         12         0
+ 6:         16         0
+ 7:         19         0
+ 8:         23         1
+ 9:         25         0
+10:         39         0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the percentage of patients who met the criteria for presumed infection</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ans  <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span> all_patientsDT[, <span class="fu">mean</span>(infection)]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>ans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14.94382</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2023, Hamza Rahal</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

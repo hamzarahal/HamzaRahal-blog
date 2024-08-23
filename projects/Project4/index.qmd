@@ -1,0 +1,115 @@
+---
+title: "What Your Heart Rate Is Telling You"
+format:
+  html:
+    code-fold: true
+execute:
+  echo: true
+author: "Hamza Rahal"
+date: "2024-06-12"
+categories: [project, code, analysis]
+---
+
+## 1. Heart disease and potential risk factors
+
+Millions of people are getting some sort of heart disease every year and heart disease is the biggest killer of both men and women in the United States and around the world. Statistical analysis has identified many risk factors associated with heart disease such as age, blood pressure, total cholesterol, diabetes, hypertension, family history of heart disease, obesity, lack of physical exercise, etc. In this notebook, we're going to run statistical testings and regression models using the Cleveland heart disease dataset to assess one particular factor -- maximum heart rate one can achieve during exercise and how it is associated with a higher likelihood of getting heart disease.
+
+```{r}
+# Read datasets Cleveland_hd.csv into hd_data
+hd_data <- read.csv("Cleveland_hd.csv")
+
+# take a look at the first 5 rows of hd_data
+head(hd_data, n=5)
+```
+
+## 2. Converting diagnosis class into outcome variable
+
+We noticed that the outcome variable `class` has more than two levels. According to the codebook, any non-zero values can be coded as an "event." Let's create a new variable called `hd` to represent a binary 1/0 outcome.
+
+There are a few other categorical/discrete variables in the dataset. Let's also convert sex into 'factor' type for next step analysis. Otherwise, R will treat them as continuous by default.
+
+```{r}
+# load the tidyverse package
+library(tidyverse)
+
+# Use the 'mutate' function from dplyr to recode our data
+hd_data %>% mutate(hd = ifelse(class > 0, 1, 0))-> hd_data
+
+# recode sex using mutate function and save as hd_data
+hd_data %>% mutate(sex = factor(sex, levels = 0:1, labels = c("Female","Male")))-> hd_data
+```
+
+## 3. Identifying important clinical variables
+
+Now, let's use statistical tests to see which ones are related to heart disease. We can explore the associations for each variable in the dataset. Depending on the type of the data (i.e., continuous or categorical), we use t-test or chi-squared test to calculate the p-values.
+
+Recall, t-test is used to determine whether there is a significant difference between the means of two groups (e.g., is the mean age from group A different from the mean age from group B?). A chi-squared test for independence compares two variables in a contingency table to see if they are related. In a more general sense, it tests to see whether distributions of categorical variables differ from each another.
+
+```{r}
+# Does sex have an effect? Sex is a binary variable in this dataset,
+# so the appropriate test is chi-squared test
+#hd_sex <- chisq.test(hd_datah)
+
+# Does age have an effect? Age is continuous, so we use a t-test
+#hd_age <- t.test(hd_datahd)
+
+# What about thalach? Thalach is continuous, so we use a t-test
+#hd_heartrate <- t.test(hd_datahd)
+
+# Print the results to see if p<0.05.
+#print(hd_sex)
+#print(hd_age)
+#print(hd_heartrate)
+```
+
+## 4. Explore the associations graphically (i)
+
+A good picture is worth a thousand words. In addition to p-values from statistical tests, we can plot the age, sex, and maximum heart rate distributions with respect to our outcome variable. This will give us a sense of both the direction and magnitude of the relationship.
+
+First, let's plot age using a boxplot since it is a continuous variable.
+
+```{r}
+# Recode hd to be labelled
+hd_data %>% mutate(hd_labelled = ifelse(hd == 1, "Disease", "No Disease")) -> hd_data
+
+# age vs hd
+ggplot(data = hd_data, aes(x = hd_labelled,y = age)) + geom_boxplot()
+```
+
+## 5. Explore the associations graphically (ii)
+
+Next, let's plot sex using a barplot since it is a binary variable in this dataset.
+
+```{r}
+# sex vs hd
+ggplot(data = hd_data,aes(hd_labelled, fill=sex)) + geom_bar(positio="fill") + ylab("Sex %")
+     
+```
+
+## 6. Explore the associations graphically (iii)
+
+And finally, let's plot thalach using a boxplot since it is a continuous variable.
+
+```{r}
+# max heart rate vs hd
+ggplot(data = hd_data,aes(hd_labelled,thalach)) + geom_boxplot()
+     
+```
+
+## 7. Putting all three variables in one model
+
+The plots and the statistical tests both confirmed that all the three variables are highly significantly associated with our outcome (p\<0.001 for all tests).
+
+In general, we want to use multiple logistic regression when we have one binary and two or more predicting variables. The binary variable is the dependent (Y) variable; we are studying the effect that the independent (X) variables have on the probability of obtaining a particular value of the dependent variable. For example, we might want to know the effect that maximum heart rate, age, and sex have on the probability that a person will have a heart disease in the next year. The model will also tell us what the remaining effect of maximum heart rate is after we control or adjust for the effects from the other two effectors.
+
+The `glm()` command is designed to perform generalized linear models (regressions) on binary outcome data, count data, probability data, proportion data, and many other data types. In our case, the outcome is binary following a binomial distribution.
+
+```{r}
+# use glm function from base R and specify the family argument as binomial
+model <- glm(data = hd_data, hd~age+sex+thalach, family="binomial")
+
+# extract the model summary
+summary(model)
+```
+
+## 
