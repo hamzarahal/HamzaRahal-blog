@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Hamza Rahal">
+<meta name="dcterms.date" content="2024-07-10">
 
-<title>Hamza Rahal - Projects</title>
+<title>Hamza Rahal - Key Benefits of R Shiny in Clinical Programming and Pharma industry</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,27 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.jpeg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,77 +71,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Hamza Rahal</span>
     </a>
   </div>
@@ -152,15 +94,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./projects.html" aria-current="page"> 
+    <a class="nav-link" href="../../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -196,278 +138,86 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Projects</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Key Benefits of R Shiny in Clinical Programming and Pharma industry</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">thoughts</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hamza Rahal </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 10, 2024</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="analysis">analysis <span class="quarto-category-count">(6)</span></div><div class="category" data-category="code">code <span class="quarto-category-count">(6)</span></div><div class="category" data-category="project">project <span class="quarto-category-count">(6)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p><img src="Shiny.png" class="img-fluid" width="459"></p>
+<p>R Shiny, a framework for building interactive web applications with R, has become an indispensable tool for clinical programmers, researchers, and pharmaceutical companies. By combining the statistical capabilities of R with the interactivity of web applications, Shiny enables users to create dynamic, user-friendly interfaces that facilitate data exploration, analysis, and communication.</p>
+<ol type="1">
+<li><p><strong>Interactive Data Visualization:</strong></p>
+<ul>
+<li><p><strong>Dynamic plots and charts:</strong> Create interactive visualizations that allow users to explore data in real-time, adjust parameters, and uncover hidden patterns.</p></li>
+<li><p><strong>Customizable dashboards:</strong> Develop tailored dashboards that present key metrics and insights in a visually appealing and informative format.</p></li>
+<li><p><strong>Enhanced collaboration:</strong> Facilitate collaboration among team members by providing a shared platform for exploring and discussing data.</p></li>
+</ul></li>
+<li><p><strong>Data Exploration and Analysis:</strong></p>
+<ul>
+<li><p><strong>User-friendly interfaces:</strong> Build intuitive interfaces that simplify complex data analysis tasks, making it accessible to users with varying technical backgrounds.</p></li>
+<li><p><strong>Interactive data exploration:</strong> Allow users to filter, sort, and search data, enabling them to delve deeper into specific areas of interest.</p></li>
+<li><p><strong>Real-time updates:</strong> Ensure that visualizations and analyses are updated automatically as data changes, providing a dynamic and up-to-date view of the information.</p></li>
+</ul></li>
+<li><p><strong>Clinical Trial Management:</strong></p>
+<ul>
+<li><p><strong>Patient recruitment and tracking:</strong> Develop interactive tools for managing patient recruitment, tracking enrollment progress, and monitoring key metrics.</p></li>
+<li><p><strong>Data monitoring and reporting:</strong> Create dashboards for real-time data monitoring, identifying potential safety signals, and generating customized reports.</p></li>
+<li><p><strong>Regulatory compliance:</strong> Ensure adherence to regulatory standards by providing a platform for documenting and tracking clinical trial activities.</p></li>
+</ul></li>
+<li><p><strong>Pharmacovigilance:</strong></p>
+<ul>
+<li><p><strong>Adverse event reporting:</strong> Build interactive tools for capturing, reporting, and analyzing adverse events, facilitating timely identification and investigation of safety signals.</p></li>
+<li><p><strong>Risk assessment and mitigation:</strong> Develop dashboards for assessing risk factors, monitoring safety profiles, and implementing risk mitigation strategies.</p></li>
+<li><p><strong>Regulatory reporting:</strong> Generate regulatory-compliant reports, such as periodic safety update reports (PSURs), using Shiny’s data visualization and reporting capabilities.</p></li>
+</ul></li>
+</ol>
+<p><strong>Example Use Cases:</strong></p>
+<ul>
+<li><p><strong>Interactive safety monitoring dashboard:</strong> Visualize adverse event rates, severity, and temporal trends over time.</p></li>
+<li><p><strong>Clinical trial recruitment tracking app:</strong> Monitor enrollment progress, identify recruitment bottlenecks, and optimize recruitment strategies.</p></li>
+<li><p><strong>Drug safety risk assessment tool:</strong> Assess drug-drug interaction risks, identify potential safety signals, and implement mitigation measures.</p></li>
+<li><p><strong>Pharmaceutical sales analysis dashboard:</strong> Analyze sales trends, market share, and customer behavior to inform marketing and sales strategies.</p></li>
+</ul>
+<p>R Shiny offers a powerful and versatile platform for clinical programming, clinical research, and the pharmaceutical industry. By leveraging its capabilities for interactive data visualization, data exploration, clinical trial management, and pharmacovigilance, researchers and clinicians can gain valuable insights, improve decision-making, and ultimately accelerate drug development and improve patient outcomes.</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="project,code,analysis" data-listing-date-sort="1720476000000" data-listing-file-modified-sort="1725270837792" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="947">
-<div class="thumbnail">
-<p><a href="./projects/Project2/index.html" class="no-external"></a></p><a href="./projects/Project2/index.html" class="no-external">
-<p class="card-img-top"><img src="projects\Project2\index_files\figure-html\unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./projects/Project2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/Project2/index.html" class="no-external">Dr.&nbsp;Semmelweis and the Discovery of Handwashing</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./projects/Project2/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('project'); return false;">
-project
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./projects/Project2/index.html" class="no-external">This is Dr.&nbsp;Ignaz Semmelweis, a Hungarian physician born in 1818 and active at the Vienna General Hospital. If Dr.&nbsp;Semmelweis looks troubled it’s probably because he’s…<em></em><em></em></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./projects/Project2/index.html" class="no-external">
-<div class="listing-date">
-Jul 9, 2024
-</div>
-<div class="listing-author">
-Hamza Rahal
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="project,code,analysis" data-listing-date-sort="1720044000000" data-listing-file-modified-sort="1725270837790" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1280">
-<div class="thumbnail">
-<p><a href="./projects/Project1/index.html" class="no-external"></a></p><a href="./projects/Project1/index.html" class="no-external">
-<p class="card-img-top"><img src="projects\Project1\index_files\figure-html\unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./projects/Project1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/Project1/index.html" class="no-external">Visualizing Inequalities in Life Expectancy</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./projects/Project1/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('project'); return false;">
-project
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./projects/Project1/index.html" class="no-external">Life expectancy at birth is a measure of the average a living being is expected to live. It takes into account several demographic factors like gender, country, or year of…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./projects/Project1/index.html" class="no-external">
-<div class="listing-date">
-Jul 4, 2024
-</div>
-<div class="listing-author">
-Hamza Rahal
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="project,code,analysis" data-listing-date-sort="1719266400000" data-listing-file-modified-sort="1725270837794" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1823">
-<div class="thumbnail">
-<p><a href="./projects/Project3/index.html" class="no-external"></a></p><a href="./projects/Project3/index.html" class="no-external">
-<p class="card-img-top"><img src="projects\Project3\index_files\figure-html\unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./projects/Project3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/Project3/index.html" class="no-external">Health Survey Data Analysis of BMI</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./projects/Project3/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('project'); return false;">
-project
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./projects/Project3/index.html" class="no-external">We’ve all taken a survey at some point, but do you ever wonder what happens to your answers? Surveys are given to a carefully selected sample of people with the goal of…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./projects/Project3/index.html" class="no-external">
-<div class="listing-date">
-Jun 25, 2024
-</div>
-<div class="listing-author">
-Hamza Rahal
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="project,code,analysis" data-listing-date-sort="1718143200000" data-listing-file-modified-sort="1725270837796" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="781">
-<div class="thumbnail">
-<p><a href="./projects/Project4/index.html" class="no-external"></a></p><a href="./projects/Project4/index.html" class="no-external">
-<p class="card-img-top"><img src="projects\Project4\index_files\figure-html\unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./projects/Project4/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/Project4/index.html" class="no-external">What Your Heart Rate Is Telling You</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./projects/Project4/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('project'); return false;">
-project
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./projects/Project4/index.html" class="no-external">Millions of people are getting some sort of heart disease every year and heart disease is the biggest killer of both men and women in the United States and around the world.…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./projects/Project4/index.html" class="no-external">
-<div class="listing-date">
-Jun 12, 2024
-</div>
-<div class="listing-author">
-Hamza Rahal
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="project,code,analysis" data-listing-date-sort="1717624800000" data-listing-file-modified-sort="1725270837797" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1609">
-<div class="thumbnail">
-<p><a href="./projects/Project5/index.html" class="no-external"></a></p><a href="./projects/Project5/index.html" class="no-external">
-<p class="card-img-top"><img src="projects\Project5\index_files\figure-html\unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./projects/Project5/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/Project5/index.html" class="no-external">Clustering Heart Disease Patient Data</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./projects/Project5/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('project'); return false;">
-project
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./projects/Project5/index.html" class="no-external">Clustering algorithms are used to group together items that are similar to one another. There are many industries where it would be beneficial and insightful to use an…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./projects/Project5/index.html" class="no-external">
-<div class="listing-date">
-Jun 6, 2024
-</div>
-<div class="listing-author">
-Hamza Rahal
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="project,code,analysis" data-listing-date-sort="1717538400000" data-listing-file-modified-sort="1725270837800" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1647">
-<div class="thumbnail">
-<p><a href="./projects/Project6/index.html" class="no-external"></a></p><a href="./projects/Project6/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./projects/Project6/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./projects/Project6/index.html" class="no-external">Classify Suspected Infection in Patients</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./projects/Project6/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('project'); return false;">
-project
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./projects/Project6/index.html" class="no-external">Sepsis is a deadly syndrome where a patient has a severe infection that causes organ failure. The sooner septic patients are treated, the more likely they are to survive…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./projects/Project6/index.html" class="no-external">
-<div class="listing-date">
-Jun 5, 2024
-</div>
-<div class="listing-author">
-Hamza Rahal
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
