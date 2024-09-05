@@ -1,0 +1,13 @@
+---
+title: "Services"
+format:
+  html:
+    code-fold: true
+execute:
+  echo: false
+author: "Hamza Rahal"
+date: "2024-06-15"
+categories: [thoughts]
+---
+
+test services

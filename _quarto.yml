@@ -18,6 +18,8 @@ website:
         href: about.qmd
       - text: Projects
         href: projects.qmd
+      - text: Services
+        href: services.qmd
    
     right:
       - icon: github

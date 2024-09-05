@@ -18,5 +18,11 @@
       "/posts/post4/index.html",
       "/posts/post3/index.html"
     ]
+  },
+  {
+    "listing": "/services.html",
+    "items": [
+      "/services/index.html"
+    ]
   }
 ]
