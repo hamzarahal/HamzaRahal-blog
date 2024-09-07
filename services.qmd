@@ -11,7 +11,7 @@ page-layout: full
 title-block-banner: true
 ---
 
-![](services/pgm.jpeg){fig-align="center" width="546"}
+![](services/pgm.jpeg){fig-align="center" width="538"}
 
 **Statistical Programming**
 
