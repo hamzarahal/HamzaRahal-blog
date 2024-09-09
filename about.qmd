@@ -25,7 +25,7 @@ about:
 
 I am a professional Statistical Programmer/Analyst with 10+ years of pharma industry experience in Statistical Programming and Clinical data analysis (using SAS/R) with study experience spanning the specification, production and validation of CDISC compliant datasets (SDTM & ADaM) along with TFLs. My experience covers Phase I-IV activities and multiple therapeutic areas as well as clinical data process improvement and standards implementation.
 
-![](Statp.jpeg){fig-align="center" width="300"}
+![](Statp.jpeg){fig-align="center" width="273"}
 
 I have been actively involved in training activities within the medical research field for a professional training center. My experience includes delivering comprehensive training on a variety of statistical software and conducted workshops, seminars, and one-on-one training sessions on SPSS, R, Stata, and SAS, power bi focusing on the specific needs of researchers and trainees from different fields.
 
