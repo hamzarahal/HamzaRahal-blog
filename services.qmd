@@ -1,17 +1,11 @@
 ---
 title: "Services"
-listing:
-  contents: services
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+image: pgm.jpeg
+about:
+  template: jolla
 ---
 
-![](services/pgm.jpeg){fig-align="center" width="538"}
+![](services_old/pgm.jpeg){fig-align="center" width="418"}
 
 **Statistical Programming**
 

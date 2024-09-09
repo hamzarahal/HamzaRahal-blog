@@ -18,7 +18,7 @@ website:
         href: about.qmd
       - text: Projects
         href: projects.qmd
-      - text: Services
+      - text: services
         href: services.qmd
         
    
