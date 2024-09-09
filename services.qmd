@@ -5,9 +5,9 @@ about:
   template: jolla
 ---
 
-![](services_old/pgm.jpeg){fig-align="center" width="418"}
+![](services_old/pgm.jpeg){width="522"}
 
-**Statistical Programming**
+# **Statistical Programming**
 
 -   **SAS Programming**: Develop and maintain SAS programs for statistical analysis, dataset creation, and data manipulation.
 
@@ -17,19 +17,19 @@ about:
 
 -   **Custom Reporting Tools**: Develop custom scripts to automate the generation of **Tables, Listings, and Figures (TLFs)** for clinical trial reports.
 
-**Quality Control and Validation**
+# **Quality Control and Validation**
 
 -   **Double Programming**: Perform independent programming to validate datasets and analysis results, ensuring data integrity.
 
 -   **Validation of Statistical Code**: Conduct validation checks on SAS, R, or Python code for accuracy, consistency, and reproducibility.
 
-**Clinical Data Visualization**
+# **Clinical Data Visualization**
 
 -   **Graphs and Plots**: Create advanced data visualizations (e.g., Kaplan-Meier curves, forest plots, waterfall plots, spaghetti plots) to represent clinical trial data.
 
 -   **Interactive Dashboards**: Develop interactive dashboards (using tools like **Shiny** in R or **Power BI**) for clinical teams to explore data in real-time.
 
-**Regulatory Submission Support**
+# **Regulatory Submission Support**
 
 -   **Submission Datasets**: Prepare datasets and documentation in accordance with regulatory standards (e.g., CDISC-compliant datasets) for submissions to the **FDA**, **EMA**, or other regulatory agencies.
 
@@ -37,7 +37,7 @@ about:
 
 -   **Reviewer’s Guide and Define.XML**: Prepare essential documentation such as the Reviewer’s Guide, Define.XML, and annotated CRFs (Case Report Forms) for regulatory submissions.
 
-**Training and Support**
+# **Training and Support**
 
 -   **Programming Workshops**: Provide training sessions or workshops in SAS, R, Python, or CDISC standards for clinical and statistical teams.
 
