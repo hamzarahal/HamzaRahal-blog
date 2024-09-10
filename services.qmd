@@ -5,8 +5,6 @@ about:
   template: jolla
 ---
 
-![](services_old/pgm.jpeg){width="522"}
-
 # **Statistical Programming**
 
 -   **SAS Programming**: Develop and maintain SAS programs for statistical analysis, dataset creation, and data manipulation.
