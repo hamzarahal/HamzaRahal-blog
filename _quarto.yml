@@ -7,7 +7,7 @@ website:
   favicon: "favicon.jpeg"
   
   page-footer: 
-    left: "Copyright 2023, Hamza Rahal"
+    left: "Copyright 2024, Hamza Rahal"
     background: "lightgrey"
   
   navbar:
