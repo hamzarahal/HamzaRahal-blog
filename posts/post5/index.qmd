@@ -3,7 +3,7 @@ title: "Quality Assurance (QA) Importance and Standards in Clinical Statistical 
 author: "Hamza Rahal"
 date: "2024-07-29"
 categories: [thoughts]
-image: "QA.png"
+image: "QA.jpeg"
 ---
 
 ![](QA.jpeg){width="425"}
