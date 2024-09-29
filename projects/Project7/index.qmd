@@ -86,7 +86,7 @@ We’re going to be using the built-in lung cancer dataset that ships with the s
 
 ```{r}
 library(survival)
-?lung
+#?lung
 ```
 
 1.  `inst`: Institution code
@@ -115,7 +115,7 @@ You can access the data just by running `lung`, as if you had read in a dataset 
 head(lung)
 class(lung)
 dim(lung)
-View(lung)
+#View(lung)
 ```
 
 Notice that lung is a plain `data.frame` object. You could see what it looks like as a tibble (prints nicely, tells you the type of variable each column is). You could then reassign `lung` to the `as_tibble()`-ified version.
