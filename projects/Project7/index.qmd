@@ -38,7 +38,7 @@ The **Kaplan-Meier** curve illustrates the survival function. It’s a step func
 
 ### **Cox PH Model**
 
-Kaplan-Meier curves are good for visualizing differences in survival between two categorical groups,^[4](https://bioconnector.github.io/workshops/r-survival.html#fn4)^ but they don’t work well for assessing the effect of *quantitative* variables like age, gene expression, leukocyte count, etc. Cox PH regression can assess the effect of both categorical and continuous variables, and can model the effect of multiple variables at once.^[5](https://bioconnector.github.io/workshops/r-survival.html#fn5)^
+Kaplan-Meier curves are good for visualizing differences in survival between two categorical groups, but they don’t work well for assessing the effect of *quantitative* variables like age, gene expression, leukocyte count, etc. Cox PH regression can assess the effect of both categorical and continuous variables, and can model the effect of multiple variables at once.
 
 Cox PH regression models the natural log of the hazard at time *t*, denoted h(t)h(t), as a function of the baseline hazard (h0(t)h0(t)) (the hazard for an individual where all exposure variables are 0) and multiple exposure variables x1x1, x1x1, ......, xpxp. The form of the Cox PH model is:
 
@@ -76,13 +76,13 @@ Other optional functions you might use include:
 
 -   `cox.zph()`: Tests the proportional hazards assumption of a Cox regression model.
 
--   `survdiff()`: Tests for differences in survival between two groups using a log-rank / Mantel-Haenszel test.^[6](https://bioconnector.github.io/workshops/r-survival.html#fn6)^
+-   `survdiff()`: Tests for differences in survival between two groups using a log-rank / Mantel-Haenszel test.
 
-`Surv()` creates the response variable, and typical usage takes the time to event,^[7](https://bioconnector.github.io/workshops/r-survival.html#fn7)^ and whether or not the event occured (i.e., death vs censored). `survfit()` creates a survival curve that you could then display or plot. `coxph()` implements the regression analysis, and models specified the same way as in regular linear models, but using the `coxph()` function.
+`Surv()` creates the response variable, and typical usage takes the time to event, and whether or not the event occured (i.e., death vs censored). `survfit()` creates a survival curve that you could then display or plot. `coxph()` implements the regression analysis, and models specified the same way as in regular linear models, but using the `coxph()` function.
 
 ### **Getting started**
 
-We’re going to be using the built-in lung cancer dataset^[8](https://bioconnector.github.io/workshops/r-survival.html#fn8)^ that ships with the survival package. You can get some more information about the dataset by running `?lung`. The help tells us there are 10 variables in this data:
+We’re going to be using the built-in lung cancer dataset that ships with the survival package. You can get some more information about the dataset by running `?lung`. The help tells us there are 10 variables in this data:
 
 ```{r}
 library(survival)
@@ -128,7 +128,7 @@ lung
 
 ### **Survival Curves**
 
-Check out the help for `?Surv`. This is the main function we’ll use to create the survival object. You can play fast and loose with how you specify the arguments to `Surv`. The help tells you that when there are two unnamed arguments, they will match `time` and `event` in that order. This is the common shorthand you’ll often see for right-censored data. The alternative lets you specify interval data, where you give it the start and end times (`time` and `time2`). If you keep reading you’ll see how `Surv` tries to guess how you’re coding the status variable. It will try to guess whether you’re using 0/1 or 1/2 to represent censored vs “dead”, respectively.^[9](https://bioconnector.github.io/workshops/r-survival.html#fn9)^
+Check out the help for `?Surv`. This is the main function we’ll use to create the survival object. You can play fast and loose with how you specify the arguments to `Surv`. The help tells you that when there are two unnamed arguments, they will match `time` and `event` in that order. This is the common shorthand you’ll often see for right-censored data. The alternative lets you specify interval data, where you give it the start and end times (`time` and `time2`). If you keep reading you’ll see how `Surv` tries to guess how you’re coding the status variable. It will try to guess whether you’re using 0/1 or 1/2 to represent censored vs “dead”, respectively.
 
 Try creating a survival object called `s`, then display it. If you go back and `head(lung)` the data, you can see how these are related. It’s a special type of vector that tells you both how long the subject was tracked for, and whether or not the event occured or the sample was censored (shown by the `+`).
 
