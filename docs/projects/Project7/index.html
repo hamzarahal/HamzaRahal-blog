@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hamza Rahal">
+<meta name="dcterms.date" content="2024-09-05">
+
+<title>Hamza Rahal - Survival Analysis using R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Hamza Rahal</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../services.html"> 
+<span class="menu-text">Services</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/hamzarahal"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/HamzaRahal01"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/hamza-rahal-18482261/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@hamzarahal3341"> <i class="bi bi-youtube" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Survival Analysis using R</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">project</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hamza Rahal </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 5, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="survival-analysis-with-r" class="level1">
+<h1><strong>Survival Analysis with R</strong></h1>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background"><strong>Background</strong></h2>
+<p>In the class on essential statistics we covered basic categorical data analysis – comparing proportions (risks, rates, etc) between different groups using a chi-square or fisher exact test, or logistic regression. For example, we looked at how the diabetes rate differed between males and females. In this kind of analysis you implicitly assume that the rates are constant over the period of the study, or as defined by the different groups you defined.</p>
+<p>But, in longitudinal studies where you track samples or subjects from one time point (e.g., entry into a study, diagnosis, start of a treatment) until you observe some outcome <em>event</em> (e.g., death, onset of disease, relapse), it doesn’t make sense to assume the rates are constant. For example: the risk of death after heart surgery is highest immediately post-op, decreases as the patient recovers, then rises slowly again as the patient ages. Or, recurrence rate of different cancers varies highly over time, and depends on tumor genetics, treatment, and other environmental factors.</p>
+<section id="definitions" class="level3">
+<h3 class="anchored" data-anchor-id="definitions"><strong>Definitions</strong></h3>
+<p><strong>Survival analysis</strong> lets you analyze the rates of occurrence of events over time, without assuming the rates are constant. Generally, survival analysis lets you model the <em>time until an event occurs</em>,<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn1">1</a></sup> or compare the time-to-event between different groups, or how time-to-event correlates with quantitative variables.</p>
+<p>The <strong>hazard</strong> is the instantaneous event (death) rate at a particular time point <em>t</em>. Survival analysis doesn’t assume the hazard is constant over time. The <em>cumulative hazard</em> is the total hazard experienced up to time <em>t</em>.</p>
+<p>The <strong>survival function</strong>, is the probability an individual survives (or, the probability that the event of interest does not occur) up to and including time <em>t</em>. It’s the probability that the event (e.g., death) hasn’t occured yet. It looks like this, where TT is the time of death, and Pr(T&gt;t)Pr(T&gt;t) is the probability that the time of death is greater than some time tt. SS is a probability, so 0≤S(t)≤10≤S(t)≤1, since survival times are always positive (T≥0T≥0).</p>
+<p>S(t)=Pr(T&gt;t)S(t)=Pr(T&gt;t)</p>
+<p>The <strong>Kaplan-Meier</strong> curve illustrates the survival function. It’s a step function illustrating the cumulative survival probability over time. The curve is horizontal over periods where no event occurs, then drops vertically corresponding to a change in the survival function at each time an event occurs.</p>
+<p><strong>Censoring</strong> is a type of missing data problem unique to survival analysis. This happens when you track the sample/subject through the end of the study and the event never occurs. This could also happen due to the sample/subject dropping out of the study for reasons other than death, or some other loss to followup. The sample is <em>censored</em> in that you only know that the individual survived up to the loss to followup, but you don’t know anything about survival after that.<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn2">2</a></sup></p>
+<p><strong>Proportional hazards assumption</strong>: The main goal of survival analysis is to compare the survival functions in different groups, e.g., leukemia patients as compared to cancer-free controls. If you followed both groups until everyone died, both survival curves would end at 0%, but one group might have survived on average a lot longer than the other group. Survival analysis does this by comparing the <em>hazard</em> at different times over the observation period. Survival analysis doesn’t assume that the hazard is constant, but <em>does</em> assume that the <em>ratio</em> of hazards between groups is constant over time.<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn3">3</a></sup> This class does <em>not</em> cover methods to deal with non-proportional hazards, or interactions of covariates with the time to event.</p>
+<p><strong>Proportional hazards regression</strong> a.k.a. <strong>Cox regression</strong> is the most common approach to assess the effect of different variables on survival.</p>
+</section>
+<section id="cox-ph-model" class="level3">
+<h3 class="anchored" data-anchor-id="cox-ph-model"><strong>Cox PH Model</strong></h3>
+<p>Kaplan-Meier curves are good for visualizing differences in survival between two categorical groups,<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn4">4</a></sup> but they don’t work well for assessing the effect of <em>quantitative</em> variables like age, gene expression, leukocyte count, etc. Cox PH regression can assess the effect of both categorical and continuous variables, and can model the effect of multiple variables at once.<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn5">5</a></sup></p>
+<p>Cox PH regression models the natural log of the hazard at time <em>t</em>, denoted h(t)h(t), as a function of the baseline hazard (h0(t)h0(t)) (the hazard for an individual where all exposure variables are 0) and multiple exposure variables x1x1, x1x1, ……, xpxp. The form of the Cox PH model is:</p>
+<p>log(h(t))=log(h0(t))+β1x1+β2x2+…+βpxplog(h(t))=log(h0(t))+β1x1+β2x2+…+βpxp</p>
+<p>If you exponentiate both sides of the equation, and limit the right hand side to just a single categorical exposure variable (x1x1) with two groups (x1=1x1=1 for exposed and x1=0x1=0 for unexposed), the equation becomes:</p>
+<p>h1(t)=h0(t)×eβ1x1h1(t)=h0(t)×eβ1x1</p>
+<p>Rearranging that equation lets you estimate the <strong>hazard ratio</strong>, comparing the exposed to the unexposed individuals at time <em>t</em>:</p>
+<p>HR(t)=h1(t)h0(t)=eβ1HR(t)=h1(t)h0(t)=eβ1</p>
+<p>This model shows that <strong>the hazard ratio is</strong> eβ1eβ1, and remains constant over time <em>t</em> (hence the name <em>proportional hazards regression</em>). The ββ values are the regression coefficients that are estimated from the model, and represent the log(HazardRatio)log(HazardRatio) for each unit increase in the corresponding predictor variable. The interpretation of the hazards ratio depends on the measurement scale of the predictor variable, but in simple terms, a positive coefficient indicates worse survival and a negative coefficient indicates better survival for the variable in question.</p>
+</section>
+</section>
+<section id="survival-analysis-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="survival-analysis-in-r"><strong>Survival analysis in R</strong></h2>
+<p>The core survival analysis functions are in the <a href="https://cran.r-project.org/web/packages/survival/"><strong>survival</strong></a> package. The survival package is one of the few “core” packages that comes bundled with your basic R installation, so you probably didn’t need to <code>install.packages()</code> it. But, you’ll need to load it like any other library when you want to use it. We’ll also be using the <strong>dplyr</strong> package, so let’s load that too. Finally, we’ll also want to load the <a href="https://cran.rstudio.com/web/packages/survminer/index.html"><strong>survminer</strong></a> package, which provides much nicer Kaplan-Meier plots out-of-the-box than what you get out of base graphics.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attachement du package : 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survminer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Le chargement a nécessité le package : ggplot2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Le chargement a nécessité le package : ggpubr</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attachement du package : 'survminer'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>L'objet suivant est masqué depuis 'package:survival':
+
+    myeloma</code></pre>
+</div>
+</div>
+<p>The core functions we’ll use out of the survival package include:</p>
+<ul>
+<li><p><code>Surv()</code>: Creates a survival object.</p></li>
+<li><p><code>survfit()</code>: Fits a survival curve using either a formula, of from a previously fitted Cox model.</p></li>
+<li><p><code>coxph()</code>: Fits a Cox proportional hazards regression model.</p></li>
+</ul>
+<p>Other optional functions you might use include:</p>
+<ul>
+<li><p><code>cox.zph()</code>: Tests the proportional hazards assumption of a Cox regression model.</p></li>
+<li><p><code>survdiff()</code>: Tests for differences in survival between two groups using a log-rank / Mantel-Haenszel test.<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn6">6</a></sup></p></li>
+</ul>
+<p><code>Surv()</code> creates the response variable, and typical usage takes the time to event,<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn7">7</a></sup> and whether or not the event occured (i.e., death vs censored). <code>survfit()</code> creates a survival curve that you could then display or plot. <code>coxph()</code> implements the regression analysis, and models specified the same way as in regular linear models, but using the <code>coxph()</code> function.</p>
+<section id="getting-started" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started"><strong>Getting started</strong></h3>
+<p>We’re going to be using the built-in lung cancer dataset<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn8">8</a></sup> that ships with the survival package. You can get some more information about the dataset by running <code>?lung</code>. The help tells us there are 10 variables in this data:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>?lung</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>démarrage du serveur d'aide httpd ... fini</code></pre>
+</div>
+</div>
+<ol type="1">
+<li><p><code>inst</code>: Institution code</p></li>
+<li><p><strong><code>time</code>: Survival time in days</strong></p></li>
+<li><p><strong><code>status</code>: censoring status 1=censored, 2=dead</strong></p></li>
+<li><p><code>age</code>: Age in years</p></li>
+<li><p><strong><code>sex</code>: Male=1 Female=2</strong></p></li>
+<li><p><code>ph.ecog</code>: ECOG performance score (0=good 5=dead)</p></li>
+<li><p><code>ph.karno</code>: Karnofsky performance score as rated by physician</p></li>
+<li><p><code>pat.karno</code>: Karnofsky performance score as rated by patient</p></li>
+<li><p><code>meal.cal</code>: Calories consumed at meals</p></li>
+<li><p><code>wt.loss</code>: Weight loss in last six months</p></li>
+</ol>
+<p>You can access the data just by running <code>lung</code>, as if you had read in a dataset and called it <code>lung</code>. You can operate on it just like any other data frame.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  inst time status age sex ph.ecog ph.karno pat.karno meal.cal wt.loss
+1    3  306      2  74   1       1       90       100     1175      NA
+2    3  455      2  68   1       0       90        90     1225      15
+3    3 1010      1  56   1       0       90        90       NA      15
+4    5  210      2  57   1       1       90        60     1150      11
+5    1  883      2  60   1       0      100        90       NA       0
+6   12 1022      1  74   1       1       50        80      513       0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 228  10</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Notice that lung is a plain&nbsp;<code>data.frame</code>&nbsp;object. You could see what it looks like as a tibble (prints nicely, tells you the type of variable each column is). You could then reassign&nbsp;<code>lung</code>&nbsp;to the&nbsp;<code>as_tibble()</code>-ified version.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 228 × 10
+    inst  time status   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+ 1     3   306      2    74     1       1       90       100     1175      NA
+ 2     3   455      2    68     1       0       90        90     1225      15
+ 3     3  1010      1    56     1       0       90        90       NA      15
+ 4     5   210      2    57     1       1       90        60     1150      11
+ 5     1   883      2    60     1       0      100        90       NA       0
+ 6    12  1022      1    74     1       1       50        80      513       0
+ 7     7   310      2    68     2       2       70        60      384      10
+ 8    11   361      2    71     2       2       60        80      538       1
+ 9     1   218      2    53     1       1       70        80      825      16
+10     7   166      2    61     1       2       70        70      271      34
+# ℹ 218 more rows</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lung <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(lung)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lung</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 228 × 10
+    inst  time status   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+ 1     3   306      2    74     1       1       90       100     1175      NA
+ 2     3   455      2    68     1       0       90        90     1225      15
+ 3     3  1010      1    56     1       0       90        90       NA      15
+ 4     5   210      2    57     1       1       90        60     1150      11
+ 5     1   883      2    60     1       0      100        90       NA       0
+ 6    12  1022      1    74     1       1       50        80      513       0
+ 7     7   310      2    68     2       2       70        60      384      10
+ 8    11   361      2    71     2       2       60        80      538       1
+ 9     1   218      2    53     1       1       70        80      825      16
+10     7   166      2    61     1       2       70        70      271      34
+# ℹ 218 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="survival-curves" class="level3">
+<h3 class="anchored" data-anchor-id="survival-curves"><strong>Survival Curves</strong></h3>
+<p>Check out the help for <code>?Surv</code>. This is the main function we’ll use to create the survival object. You can play fast and loose with how you specify the arguments to <code>Surv</code>. The help tells you that when there are two unnamed arguments, they will match <code>time</code> and <code>event</code> in that order. This is the common shorthand you’ll often see for right-censored data. The alternative lets you specify interval data, where you give it the start and end times (<code>time</code> and <code>time2</code>). If you keep reading you’ll see how <code>Surv</code> tries to guess how you’re coding the status variable. It will try to guess whether you’re using 0/1 or 1/2 to represent censored vs “dead”, respectively.<sup><a href="https://bioconnector.github.io/workshops/r-survival.html#fn9">9</a></sup></p>
+<p>Try creating a survival object called <code>s</code>, then display it. If you go back and <code>head(lung)</code> the data, you can see how these are related. It’s a special type of vector that tells you both how long the subject was tracked for, and whether or not the event occured or the sample was censored (shown by the <code>+</code>).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">Surv</span>(lung<span class="sc">$</span>time, lung<span class="sc">$</span>status)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Surv"</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1]  306   455  1010+  210   883  1022+  310   361   218   166   170   654 
+ [13]  728    71   567   144   613   707    61    88   301    81   624   371 
+ [25]  394   520   574   118   390    12   473    26   533   107    53   122 
+ [37]  814   965+   93   731   460   153   433   145   583    95   303   519 
+ [49]  643   765   735   189    53   246   689    65     5   132   687   345 
+ [61]  444   223   175    60   163    65   208   821+  428   230   840+  305 
+ [73]   11   132   226   426   705   363    11   176   791    95   196+  167 
+ [85]  806+  284   641   147   740+  163   655   239    88   245   588+   30 
+ [97]  179   310   477   166   559+  450   364   107   177   156   529+   11 
+[109]  429   351    15   181   283   201   524    13   212   524   288   363 
+[121]  442   199   550    54   558   207    92    60   551+  543+  293   202 
+[133]  353   511+  267   511+  371   387   457   337   201   404+  222    62 
+[145]  458+  356+  353   163    31   340   229   444+  315+  182   156   329 
+[157]  364+  291   179   376+  384+  268   292+  142   413+  266+  194   320 
+[169]  181   285   301+  348   197   382+  303+  296+  180   186   145   269+
+[181]  300+  284+  350   272+  292+  332+  285   259+  110   286   270    81 
+[193]  131   225+  269   225+  243+  279+  276+  135    79    59   240+  202+
+[205]  235+  105   224+  239   237+  173+  252+  221+  185+   92+   13   222+
+[217]  192+  183   211+  175+  197+  203+  116   188+  191+  105+  174+  177+</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+   inst  time status   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss
+  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1     3   306      2    74     1       1       90       100     1175      NA
+2     3   455      2    68     1       0       90        90     1225      15
+3     3  1010      1    56     1       0       90        90       NA      15
+4     5   210      2    57     1       1       90        60     1150      11
+5     1   883      2    60     1       0      100        90       NA       0
+6    12  1022      1    74     1       1       50        80      513       0</code></pre>
+</div>
+</div>
+<p>Now, let’s&nbsp;<strong>fit a survival curve</strong>&nbsp;with the&nbsp;<code>survfit()</code>&nbsp;function. See the help for&nbsp;<code>?survfit</code>. Here we’ll create a simple survival curve that doesn’t consider any different groupings, so we’ll specify just an intercept (e.g.,&nbsp;<code>~1</code>) in the formula that&nbsp;<code>survfit</code>&nbsp;expects. We can do what we just did by “modeling” the survival object&nbsp;<code>s</code>&nbsp;we just created against an intercept only, but from here out, we’ll just do this in one step by nesting the&nbsp;<code>Surv()</code>&nbsp;call within the&nbsp;<code>survfit()</code>&nbsp;call, and similar to how we specify data for linear models with&nbsp;<code>lm()</code>, we’ll use the&nbsp;<code>data=</code>&nbsp;argument to specify which data we’re using. Similarly, we can assign that to another object called&nbsp;<code>sfit</code>&nbsp;(or whatever we wanted to call it).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(s<span class="sc">~</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = s ~ 1)
+
+       n events median 0.95LCL 0.95UCL
+[1,] 228    165    310     285     363</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status)<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ 1, data = lung)
+
+       n events median 0.95LCL 0.95UCL
+[1,] 228    165    310     285     363</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status)<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>lung)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sfit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ 1, data = lung)
+
+       n events median 0.95LCL 0.95UCL
+[1,] 228    165    310     285     363</code></pre>
+</div>
+</div>
+<p>Now, that object itself isn’t very interesting. It’s more interesting to run&nbsp;<code>summary</code>&nbsp;on what it creates. This will show a life table.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ 1, data = lung)
+
+ time n.risk n.event survival std.err lower 95% CI upper 95% CI
+    5    228       1   0.9956 0.00438       0.9871        1.000
+   11    227       3   0.9825 0.00869       0.9656        1.000
+   12    224       1   0.9781 0.00970       0.9592        0.997
+   13    223       2   0.9693 0.01142       0.9472        0.992
+   15    221       1   0.9649 0.01219       0.9413        0.989
+   26    220       1   0.9605 0.01290       0.9356        0.986
+   30    219       1   0.9561 0.01356       0.9299        0.983
+   31    218       1   0.9518 0.01419       0.9243        0.980
+   53    217       2   0.9430 0.01536       0.9134        0.974
+   54    215       1   0.9386 0.01590       0.9079        0.970
+   59    214       1   0.9342 0.01642       0.9026        0.967
+   60    213       2   0.9254 0.01740       0.8920        0.960
+   61    211       1   0.9211 0.01786       0.8867        0.957
+   62    210       1   0.9167 0.01830       0.8815        0.953
+   65    209       2   0.9079 0.01915       0.8711        0.946
+   71    207       1   0.9035 0.01955       0.8660        0.943
+   79    206       1   0.8991 0.01995       0.8609        0.939
+   81    205       2   0.8904 0.02069       0.8507        0.932
+   88    203       2   0.8816 0.02140       0.8406        0.925
+   92    201       1   0.8772 0.02174       0.8356        0.921
+   93    199       1   0.8728 0.02207       0.8306        0.917
+   95    198       2   0.8640 0.02271       0.8206        0.910
+  105    196       1   0.8596 0.02302       0.8156        0.906
+  107    194       2   0.8507 0.02362       0.8056        0.898
+  110    192       1   0.8463 0.02391       0.8007        0.894
+  116    191       1   0.8418 0.02419       0.7957        0.891
+  118    190       1   0.8374 0.02446       0.7908        0.887
+  122    189       1   0.8330 0.02473       0.7859        0.883
+  131    188       1   0.8285 0.02500       0.7810        0.879
+  132    187       2   0.8197 0.02550       0.7712        0.871
+  135    185       1   0.8153 0.02575       0.7663        0.867
+  142    184       1   0.8108 0.02598       0.7615        0.863
+  144    183       1   0.8064 0.02622       0.7566        0.859
+  145    182       2   0.7975 0.02667       0.7469        0.852
+  147    180       1   0.7931 0.02688       0.7421        0.848
+  153    179       1   0.7887 0.02710       0.7373        0.844
+  156    178       2   0.7798 0.02751       0.7277        0.836
+  163    176       3   0.7665 0.02809       0.7134        0.824
+  166    173       2   0.7577 0.02845       0.7039        0.816
+  167    171       1   0.7532 0.02863       0.6991        0.811
+  170    170       1   0.7488 0.02880       0.6944        0.807
+  175    167       1   0.7443 0.02898       0.6896        0.803
+  176    165       1   0.7398 0.02915       0.6848        0.799
+  177    164       1   0.7353 0.02932       0.6800        0.795
+  179    162       2   0.7262 0.02965       0.6704        0.787
+  180    160       1   0.7217 0.02981       0.6655        0.783
+  181    159       2   0.7126 0.03012       0.6559        0.774
+  182    157       1   0.7081 0.03027       0.6511        0.770
+  183    156       1   0.7035 0.03041       0.6464        0.766
+  186    154       1   0.6989 0.03056       0.6416        0.761
+  189    152       1   0.6943 0.03070       0.6367        0.757
+  194    149       1   0.6897 0.03085       0.6318        0.753
+  197    147       1   0.6850 0.03099       0.6269        0.749
+  199    145       1   0.6803 0.03113       0.6219        0.744
+  201    144       2   0.6708 0.03141       0.6120        0.735
+  202    142       1   0.6661 0.03154       0.6071        0.731
+  207    139       1   0.6613 0.03168       0.6020        0.726
+  208    138       1   0.6565 0.03181       0.5970        0.722
+  210    137       1   0.6517 0.03194       0.5920        0.717
+  212    135       1   0.6469 0.03206       0.5870        0.713
+  218    134       1   0.6421 0.03218       0.5820        0.708
+  222    132       1   0.6372 0.03231       0.5769        0.704
+  223    130       1   0.6323 0.03243       0.5718        0.699
+  226    126       1   0.6273 0.03256       0.5666        0.694
+  229    125       1   0.6223 0.03268       0.5614        0.690
+  230    124       1   0.6172 0.03280       0.5562        0.685
+  239    121       2   0.6070 0.03304       0.5456        0.675
+  245    117       1   0.6019 0.03316       0.5402        0.670
+  246    116       1   0.5967 0.03328       0.5349        0.666
+  267    112       1   0.5913 0.03341       0.5294        0.661
+  268    111       1   0.5860 0.03353       0.5239        0.656
+  269    110       1   0.5807 0.03364       0.5184        0.651
+  270    108       1   0.5753 0.03376       0.5128        0.645
+  283    104       1   0.5698 0.03388       0.5071        0.640
+  284    103       1   0.5642 0.03400       0.5014        0.635
+  285    101       2   0.5531 0.03424       0.4899        0.624
+  286     99       1   0.5475 0.03434       0.4841        0.619
+  288     98       1   0.5419 0.03444       0.4784        0.614
+  291     97       1   0.5363 0.03454       0.4727        0.608
+  293     94       1   0.5306 0.03464       0.4669        0.603
+  301     91       1   0.5248 0.03475       0.4609        0.597
+  303     89       1   0.5189 0.03485       0.4549        0.592
+  305     87       1   0.5129 0.03496       0.4488        0.586
+  306     86       1   0.5070 0.03506       0.4427        0.581
+  310     85       2   0.4950 0.03523       0.4306        0.569
+  320     82       1   0.4890 0.03532       0.4244        0.563
+  329     81       1   0.4830 0.03539       0.4183        0.558
+  337     79       1   0.4768 0.03547       0.4121        0.552
+  340     78       1   0.4707 0.03554       0.4060        0.546
+  345     77       1   0.4646 0.03560       0.3998        0.540
+  348     76       1   0.4585 0.03565       0.3937        0.534
+  350     75       1   0.4524 0.03569       0.3876        0.528
+  351     74       1   0.4463 0.03573       0.3815        0.522
+  353     73       2   0.4340 0.03578       0.3693        0.510
+  361     70       1   0.4278 0.03581       0.3631        0.504
+  363     69       2   0.4154 0.03583       0.3508        0.492
+  364     67       1   0.4092 0.03582       0.3447        0.486
+  371     65       2   0.3966 0.03581       0.3323        0.473
+  387     60       1   0.3900 0.03582       0.3258        0.467
+  390     59       1   0.3834 0.03582       0.3193        0.460
+  394     58       1   0.3768 0.03580       0.3128        0.454
+  426     55       1   0.3700 0.03580       0.3060        0.447
+  428     54       1   0.3631 0.03579       0.2993        0.440
+  429     53       1   0.3563 0.03576       0.2926        0.434
+  433     52       1   0.3494 0.03573       0.2860        0.427
+  442     51       1   0.3426 0.03568       0.2793        0.420
+  444     50       1   0.3357 0.03561       0.2727        0.413
+  450     48       1   0.3287 0.03555       0.2659        0.406
+  455     47       1   0.3217 0.03548       0.2592        0.399
+  457     46       1   0.3147 0.03539       0.2525        0.392
+  460     44       1   0.3076 0.03530       0.2456        0.385
+  473     43       1   0.3004 0.03520       0.2388        0.378
+  477     42       1   0.2933 0.03508       0.2320        0.371
+  519     39       1   0.2857 0.03498       0.2248        0.363
+  520     38       1   0.2782 0.03485       0.2177        0.356
+  524     37       2   0.2632 0.03455       0.2035        0.340
+  533     34       1   0.2554 0.03439       0.1962        0.333
+  550     32       1   0.2475 0.03423       0.1887        0.325
+  558     30       1   0.2392 0.03407       0.1810        0.316
+  567     28       1   0.2307 0.03391       0.1729        0.308
+  574     27       1   0.2221 0.03371       0.1650        0.299
+  583     26       1   0.2136 0.03348       0.1571        0.290
+  613     24       1   0.2047 0.03325       0.1489        0.281
+  624     23       1   0.1958 0.03297       0.1407        0.272
+  641     22       1   0.1869 0.03265       0.1327        0.263
+  643     21       1   0.1780 0.03229       0.1247        0.254
+  654     20       1   0.1691 0.03188       0.1169        0.245
+  655     19       1   0.1602 0.03142       0.1091        0.235
+  687     18       1   0.1513 0.03090       0.1014        0.226
+  689     17       1   0.1424 0.03034       0.0938        0.216
+  705     16       1   0.1335 0.02972       0.0863        0.207
+  707     15       1   0.1246 0.02904       0.0789        0.197
+  728     14       1   0.1157 0.02830       0.0716        0.187
+  731     13       1   0.1068 0.02749       0.0645        0.177
+  735     12       1   0.0979 0.02660       0.0575        0.167
+  765     10       1   0.0881 0.02568       0.0498        0.156
+  791      9       1   0.0783 0.02462       0.0423        0.145
+  814      7       1   0.0671 0.02351       0.0338        0.133
+  883      4       1   0.0503 0.02285       0.0207        0.123</code></pre>
+</div>
+</div>
+<p>These tables show a row for each time point where either the event occured or a sample was censored. It shows the number at risk (number still remaining), and the cumulative survival at that instant.</p>
+<p>What’s more interesting though is if we model something besides just an intercept. Let’s fit survival curves separately by sex.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status)<span class="sc">~</span>sex, <span class="at">data=</span>lung)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sfit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ sex, data = lung)
+
+        n events median 0.95LCL 0.95UCL
+sex=1 138    112    270     212     310
+sex=2  90     53    426     348     550</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ sex, data = lung)
+
+                sex=1 
+ time n.risk n.event survival std.err lower 95% CI upper 95% CI
+   11    138       3   0.9783  0.0124       0.9542        1.000
+   12    135       1   0.9710  0.0143       0.9434        0.999
+   13    134       2   0.9565  0.0174       0.9231        0.991
+   15    132       1   0.9493  0.0187       0.9134        0.987
+   26    131       1   0.9420  0.0199       0.9038        0.982
+   30    130       1   0.9348  0.0210       0.8945        0.977
+   31    129       1   0.9275  0.0221       0.8853        0.972
+   53    128       2   0.9130  0.0240       0.8672        0.961
+   54    126       1   0.9058  0.0249       0.8583        0.956
+   59    125       1   0.8986  0.0257       0.8496        0.950
+   60    124       1   0.8913  0.0265       0.8409        0.945
+   65    123       2   0.8768  0.0280       0.8237        0.933
+   71    121       1   0.8696  0.0287       0.8152        0.928
+   81    120       1   0.8623  0.0293       0.8067        0.922
+   88    119       2   0.8478  0.0306       0.7900        0.910
+   92    117       1   0.8406  0.0312       0.7817        0.904
+   93    116       1   0.8333  0.0317       0.7734        0.898
+   95    115       1   0.8261  0.0323       0.7652        0.892
+  105    114       1   0.8188  0.0328       0.7570        0.886
+  107    113       1   0.8116  0.0333       0.7489        0.880
+  110    112       1   0.8043  0.0338       0.7408        0.873
+  116    111       1   0.7971  0.0342       0.7328        0.867
+  118    110       1   0.7899  0.0347       0.7247        0.861
+  131    109       1   0.7826  0.0351       0.7167        0.855
+  132    108       2   0.7681  0.0359       0.7008        0.842
+  135    106       1   0.7609  0.0363       0.6929        0.835
+  142    105       1   0.7536  0.0367       0.6851        0.829
+  144    104       1   0.7464  0.0370       0.6772        0.823
+  147    103       1   0.7391  0.0374       0.6694        0.816
+  156    102       2   0.7246  0.0380       0.6538        0.803
+  163    100       3   0.7029  0.0389       0.6306        0.783
+  166     97       1   0.6957  0.0392       0.6230        0.777
+  170     96       1   0.6884  0.0394       0.6153        0.770
+  175     94       1   0.6811  0.0397       0.6076        0.763
+  176     93       1   0.6738  0.0399       0.5999        0.757
+  177     92       1   0.6664  0.0402       0.5922        0.750
+  179     91       2   0.6518  0.0406       0.5769        0.736
+  180     89       1   0.6445  0.0408       0.5693        0.730
+  181     88       2   0.6298  0.0412       0.5541        0.716
+  183     86       1   0.6225  0.0413       0.5466        0.709
+  189     83       1   0.6150  0.0415       0.5388        0.702
+  197     80       1   0.6073  0.0417       0.5309        0.695
+  202     78       1   0.5995  0.0419       0.5228        0.687
+  207     77       1   0.5917  0.0420       0.5148        0.680
+  210     76       1   0.5839  0.0422       0.5068        0.673
+  212     75       1   0.5762  0.0424       0.4988        0.665
+  218     74       1   0.5684  0.0425       0.4909        0.658
+  222     72       1   0.5605  0.0426       0.4829        0.651
+  223     70       1   0.5525  0.0428       0.4747        0.643
+  229     67       1   0.5442  0.0429       0.4663        0.635
+  230     66       1   0.5360  0.0431       0.4579        0.627
+  239     64       1   0.5276  0.0432       0.4494        0.619
+  246     63       1   0.5192  0.0433       0.4409        0.611
+  267     61       1   0.5107  0.0434       0.4323        0.603
+  269     60       1   0.5022  0.0435       0.4238        0.595
+  270     59       1   0.4937  0.0436       0.4152        0.587
+  283     57       1   0.4850  0.0437       0.4065        0.579
+  284     56       1   0.4764  0.0438       0.3979        0.570
+  285     54       1   0.4676  0.0438       0.3891        0.562
+  286     53       1   0.4587  0.0439       0.3803        0.553
+  288     52       1   0.4499  0.0439       0.3716        0.545
+  291     51       1   0.4411  0.0439       0.3629        0.536
+  301     48       1   0.4319  0.0440       0.3538        0.527
+  303     46       1   0.4225  0.0440       0.3445        0.518
+  306     44       1   0.4129  0.0440       0.3350        0.509
+  310     43       1   0.4033  0.0441       0.3256        0.500
+  320     42       1   0.3937  0.0440       0.3162        0.490
+  329     41       1   0.3841  0.0440       0.3069        0.481
+  337     40       1   0.3745  0.0439       0.2976        0.471
+  353     39       2   0.3553  0.0437       0.2791        0.452
+  363     37       1   0.3457  0.0436       0.2700        0.443
+  364     36       1   0.3361  0.0434       0.2609        0.433
+  371     35       1   0.3265  0.0432       0.2519        0.423
+  387     34       1   0.3169  0.0430       0.2429        0.413
+  390     33       1   0.3073  0.0428       0.2339        0.404
+  394     32       1   0.2977  0.0425       0.2250        0.394
+  428     29       1   0.2874  0.0423       0.2155        0.383
+  429     28       1   0.2771  0.0420       0.2060        0.373
+  442     27       1   0.2669  0.0417       0.1965        0.362
+  455     25       1   0.2562  0.0413       0.1868        0.351
+  457     24       1   0.2455  0.0410       0.1770        0.341
+  460     22       1   0.2344  0.0406       0.1669        0.329
+  477     21       1   0.2232  0.0402       0.1569        0.318
+  519     20       1   0.2121  0.0397       0.1469        0.306
+  524     19       1   0.2009  0.0391       0.1371        0.294
+  533     18       1   0.1897  0.0385       0.1275        0.282
+  558     17       1   0.1786  0.0378       0.1179        0.270
+  567     16       1   0.1674  0.0371       0.1085        0.258
+  574     15       1   0.1562  0.0362       0.0992        0.246
+  583     14       1   0.1451  0.0353       0.0900        0.234
+  613     13       1   0.1339  0.0343       0.0810        0.221
+  624     12       1   0.1228  0.0332       0.0722        0.209
+  643     11       1   0.1116  0.0320       0.0636        0.196
+  655     10       1   0.1004  0.0307       0.0552        0.183
+  689      9       1   0.0893  0.0293       0.0470        0.170
+  707      8       1   0.0781  0.0276       0.0390        0.156
+  791      7       1   0.0670  0.0259       0.0314        0.143
+  814      5       1   0.0536  0.0239       0.0223        0.128
+  883      3       1   0.0357  0.0216       0.0109        0.117
+
+                sex=2 
+ time n.risk n.event survival std.err lower 95% CI upper 95% CI
+    5     90       1   0.9889  0.0110       0.9675        1.000
+   60     89       1   0.9778  0.0155       0.9478        1.000
+   61     88       1   0.9667  0.0189       0.9303        1.000
+   62     87       1   0.9556  0.0217       0.9139        0.999
+   79     86       1   0.9444  0.0241       0.8983        0.993
+   81     85       1   0.9333  0.0263       0.8832        0.986
+   95     83       1   0.9221  0.0283       0.8683        0.979
+  107     81       1   0.9107  0.0301       0.8535        0.972
+  122     80       1   0.8993  0.0318       0.8390        0.964
+  145     79       2   0.8766  0.0349       0.8108        0.948
+  153     77       1   0.8652  0.0362       0.7970        0.939
+  166     76       1   0.8538  0.0375       0.7834        0.931
+  167     75       1   0.8424  0.0387       0.7699        0.922
+  182     71       1   0.8305  0.0399       0.7559        0.913
+  186     70       1   0.8187  0.0411       0.7420        0.903
+  194     68       1   0.8066  0.0422       0.7280        0.894
+  199     67       1   0.7946  0.0432       0.7142        0.884
+  201     66       2   0.7705  0.0452       0.6869        0.864
+  208     62       1   0.7581  0.0461       0.6729        0.854
+  226     59       1   0.7452  0.0471       0.6584        0.843
+  239     57       1   0.7322  0.0480       0.6438        0.833
+  245     54       1   0.7186  0.0490       0.6287        0.821
+  268     51       1   0.7045  0.0501       0.6129        0.810
+  285     47       1   0.6895  0.0512       0.5962        0.798
+  293     45       1   0.6742  0.0523       0.5791        0.785
+  305     43       1   0.6585  0.0534       0.5618        0.772
+  310     42       1   0.6428  0.0544       0.5447        0.759
+  340     39       1   0.6264  0.0554       0.5267        0.745
+  345     38       1   0.6099  0.0563       0.5089        0.731
+  348     37       1   0.5934  0.0572       0.4913        0.717
+  350     36       1   0.5769  0.0579       0.4739        0.702
+  351     35       1   0.5604  0.0586       0.4566        0.688
+  361     33       1   0.5434  0.0592       0.4390        0.673
+  363     32       1   0.5265  0.0597       0.4215        0.658
+  371     30       1   0.5089  0.0603       0.4035        0.642
+  426     26       1   0.4893  0.0610       0.3832        0.625
+  433     25       1   0.4698  0.0617       0.3632        0.608
+  444     24       1   0.4502  0.0621       0.3435        0.590
+  450     23       1   0.4306  0.0624       0.3241        0.572
+  473     22       1   0.4110  0.0626       0.3050        0.554
+  520     19       1   0.3894  0.0629       0.2837        0.534
+  524     18       1   0.3678  0.0630       0.2628        0.515
+  550     15       1   0.3433  0.0634       0.2390        0.493
+  641     11       1   0.3121  0.0649       0.2076        0.469
+  654     10       1   0.2808  0.0655       0.1778        0.443
+  687      9       1   0.2496  0.0652       0.1496        0.417
+  705      8       1   0.2184  0.0641       0.1229        0.388
+  728      7       1   0.1872  0.0621       0.0978        0.359
+  731      6       1   0.1560  0.0590       0.0743        0.328
+  735      5       1   0.1248  0.0549       0.0527        0.295
+  765      3       1   0.0832  0.0499       0.0257        0.270</code></pre>
+</div>
+</div>
+<p>Now, check out the help for&nbsp;<code>?summary.survfit</code>. You can give the&nbsp;<code>summary()</code>&nbsp;function an option for what times you want to show in the results. Look at the range of followup times in the lung dataset with&nbsp;<code>range()</code>. You can create a sequence of numbers going from one number to another number by increments of yet another number with the&nbsp;<code>seq()</code>&nbsp;function.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?summary.survfit</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(lung<span class="sc">$</span>time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]    5 1022</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1100</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]    0  100  200  300  400  500  600  700  800  900 1000 1100</code></pre>
+</div>
+</div>
+<p>And we can use that sequence vector with a summary call on sfit to get life tables at those intervals separately for both males (1) and females (2). From these tables we can start to see that males tend to have worse survival than females.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sfit, <span class="at">times=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ sex, data = lung)
+
+                sex=1 
+ time n.risk n.event survival std.err lower 95% CI upper 95% CI
+    0    138       0   1.0000  0.0000       1.0000        1.000
+  100    114      24   0.8261  0.0323       0.7652        0.892
+  200     78      30   0.6073  0.0417       0.5309        0.695
+  300     49      20   0.4411  0.0439       0.3629        0.536
+  400     31      15   0.2977  0.0425       0.2250        0.394
+  500     20       7   0.2232  0.0402       0.1569        0.318
+  600     13       7   0.1451  0.0353       0.0900        0.234
+  700      8       5   0.0893  0.0293       0.0470        0.170
+  800      6       2   0.0670  0.0259       0.0314        0.143
+  900      2       2   0.0357  0.0216       0.0109        0.117
+ 1000      2       0   0.0357  0.0216       0.0109        0.117
+
+                sex=2 
+ time n.risk n.event survival std.err lower 95% CI upper 95% CI
+    0     90       0   1.0000  0.0000       1.0000        1.000
+  100     82       7   0.9221  0.0283       0.8683        0.979
+  200     66      11   0.7946  0.0432       0.7142        0.884
+  300     43       9   0.6742  0.0523       0.5791        0.785
+  400     26      10   0.5089  0.0603       0.4035        0.642
+  500     21       5   0.4110  0.0626       0.3050        0.554
+  600     11       3   0.3433  0.0634       0.2390        0.493
+  700      8       3   0.2496  0.0652       0.1496        0.417
+  800      2       5   0.0832  0.0499       0.0257        0.270
+  900      1       0   0.0832  0.0499       0.0257        0.270</code></pre>
+</div>
+</div>
+</section>
+<section id="kaplan-meier-plots" class="level3">
+<h3 class="anchored" data-anchor-id="kaplan-meier-plots"><strong>Kaplan-Meier Plots</strong></h3>
+<p>Now that we’ve fit a survival curve to the data it’s pretty easy to visualize it with a <strong>Kaplan-Meier</strong> plot. Create the survival object if you don’t have it yet, and instead of using <code>summary()</code>, use <code>plot()</code> instead.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>sfit <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status)<span class="sc">~</span>sex, <span class="at">data=</span>lung)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are lots of ways to modify the plot produced by base R’s&nbsp;<code>plot()</code>&nbsp;function. You can see more options with the help for&nbsp;<code>?plot.survfit</code>. We’re not going to go into any more detail here, because there’s another package called&nbsp;<strong>survminer</strong>&nbsp;that provides a function called&nbsp;<strong><code>ggsurvplot()</code></strong>&nbsp;that makes it much easier to produce publication-ready survival plots, and if you’re familiar with ggplot2 syntax it’s pretty easy to modify. So, let’s load the package and try it out.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(sfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot is substantially more informative by default, just because it automatically color codes the different groups, adds axis labels, and creates and automatic legend. But there’s a lot more you can do pretty easily here. Let’s add confidence intervals, show the p-value for the log-rank test, show a risk table below the plot, and change the colors and the group labels.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(sfit, <span class="at">conf.int=</span><span class="cn">TRUE</span>, <span class="at">pval=</span><span class="cn">TRUE</span>, <span class="at">risk.table=</span><span class="cn">TRUE</span>, </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.labs=</span><span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), <span class="at">legend.title=</span><span class="st">"Sex"</span>,  </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">palette=</span><span class="fu">c</span>(<span class="st">"dodgerblue2"</span>, <span class="st">"orchid2"</span>), </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">title=</span><span class="st">"Kaplan-Meier Curve for Lung Cancer Survival"</span>, </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height=</span>.<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2024, Hamza Rahal</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
