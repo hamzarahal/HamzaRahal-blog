@@ -14,9 +14,7 @@ categories: [project, code, analysis]
 
 ## **Background**
 
-In the class on essential statistics we covered basic categorical data analysis – comparing proportions (risks, rates, etc) between different groups using a chi-square or fisher exact test, or logistic regression. For example, we looked at how the diabetes rate differed between males and females. In this kind of analysis you implicitly assume that the rates are constant over the period of the study, or as defined by the different groups you defined.
-
-But, in longitudinal studies where you track samples or subjects from one time point (e.g., entry into a study, diagnosis, start of a treatment) until you observe some outcome *event* (e.g., death, onset of disease, relapse), it doesn’t make sense to assume the rates are constant. For example: the risk of death after heart surgery is highest immediately post-op, decreases as the patient recovers, then rises slowly again as the patient ages. Or, recurrence rate of different cancers varies highly over time, and depends on tumor genetics, treatment, and other environmental factors.
+In longitudinal studies where you track samples or subjects from one time point (e.g., entry into a study, diagnosis, start of a treatment) until you observe some outcome *event* (e.g., death, onset of disease, relapse), it doesn’t make sense to assume the rates are constant. For example: the risk of death after heart surgery is highest immediately post-op, decreases as the patient recovers, then rises slowly again as the patient ages. Or, recurrence rate of different cancers varies highly over time, and depends on tumor genetics, treatment, and other environmental factors.
 
 ### **Definitions**
 
@@ -204,4 +202,24 @@ ggsurvplot(sfit, conf.int=TRUE, pval=TRUE, risk.table=TRUE,
            palette=c("dodgerblue2", "orchid2"), 
            title="Kaplan-Meier Curve for Lung Cancer Survival", 
            risk.table.height=.15)
+```
+
+### **Cox Regression**
+
+Kaplan-Meier curves are good for visualizing differences in survival between two categorical groups, and the log-rank test you get when you ask for `pval=TRUE` is useful for asking if there are differences in survival between different groups. But this doesn’t generalize well for assessing the effect of *quantitative* variables. Just try creating a K-M plot for the `nodes` variable, which has values that range from 0-33. What a mess! Don’t do this.
+
+```{r}
+ggsurvplot(survfit(Surv(time, status)~nodes, data=colondeath))
+
+```
+
+At some point using a categorical grouping for K-M plots breaks down, and further, you might want to assess how *multiple* variables work together to influence survival. For example, you might want to simultaneously examine the effect of race and socioeconomic status, so as to adjust for factors like income, access to care, etc., before concluding that ethnicity influences some outcome.
+
+Cox PH regression can assess the effect of both categorical and continuous variables, and can model the effect of multiple variables at once. The `coxph()` function uses the same syntax as `lm()`, `glm()`, etc. The response variable you create with `Surv()` goes on the left hand side of the formula, specified with a `~`. Explanatory variables go on the right side.
+
+Let’s go back to the lung cancer data and run a Cox regression on sex.
+
+```{r}
+fit <- coxph(Surv(time, status)~sex, data=lung)
+fit
 ```
