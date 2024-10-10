@@ -223,3 +223,13 @@ Let’s go back to the lung cancer data and run a Cox regression on sex.
 fit <- coxph(Surv(time, status)~sex, data=lung)
 fit
 ```
+
+### **Forest plots**
+
+Finally, a very nice way to visualise the hazard ratios is with a **forest plot**. In the **x-axis we have the hazard ratios.** Remember that a HR of 1 means no significant difference compared to the reference, a HR higher than 1 means it increases the hazard ratio of the event, death, and a HR lower than 1 decreases it.
+
+```{r}
+# Forest plots ================================================================
+# Visualise your Cox model results
+ggforest(cox_res, data = df)
+```
