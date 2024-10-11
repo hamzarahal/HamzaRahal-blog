@@ -126,7 +126,7 @@ lung
 
 ### **Survival Curves**
 
-Check out the help for `?Surv`. This is the main function we’ll use to create the survival object. You can play fast and loose with how you specify the arguments to `Surv`. The help tells you that when there are two unnamed arguments, they will match `time` and `event` in that order. This is the common shorthand you’ll often see for right-censored data. The alternative lets you specify interval data, where you give it the start and end times (`time` and `time2`). If you keep reading you’ll see how `Surv` tries to guess how you’re coding the status variable. It will try to guess whether you’re using 0/1 or 1/2 to represent censored vs “dead”, respectively.
+`Surv`. is the main function we’ll use to create the survival object. You can play fast and loose with how you specify the arguments to `Surv`. The help tells you that when there are two unnamed arguments, they will match `time` and `event` in that order. This is the common shorthand you’ll often see for right-censored data. The alternative lets you specify interval data, where you give it the start and end times (`time` and `time2`). If you keep reading you’ll see how `Surv` tries to guess how you’re coding the status variable. It will try to guess whether you’re using 0/1 or 1/2 to represent censored vs “dead”, respectively.
 
 Try creating a survival object called `s`, then display it. If you go back and `head(lung)` the data, you can see how these are related. It’s a special type of vector that tells you both how long the subject was tracked for, and whether or not the event occured or the sample was censored (shown by the `+`).
 
