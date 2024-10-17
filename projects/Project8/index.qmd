@@ -36,3 +36,29 @@ pacman::p_load( tidyverse, janitor, plotrix, gtsummary, survival )
 ```
 
 ### Data manipulation and exploration
+
+```{r}
+Diabetes$gender <- factor(Diabetes$gender, levels = c("1","2"),
+labels = c("male","female"))
+Diabetes$smoking <- factor(Diabetes$smoking, levels = c("1","2"),
+labels = c("smokers","Non-smokers"))
+Diabetes$diabetes <- factor(Diabetes$diabetes, levels = c("0","1"),
+labels = c("Non-diabetic","Diabetic"))
+Diabetes$veg <- factor(Diabetes$veg, levels = c("1","2"),
+labels = c("vegeterian","Non-vegeterian"))
+Diabetes$familiy_history <- factor(Diabetes$familiy_history, levels = c("1","2"),
+labels = c("Yes","No"))
+
+Diabetes <- Diabetes %>%
+mutate(BMI = weight/heightˆ2)
+Diabetes <- Diabetes %>%
+select(age, gender, smoking,weight, diabetes,veg, familiy_history, BMI) %>%
+mutate(Agegroup=
+ifelse(age < 65, "< 65", "> =65"),
+BMIclass = case_when(
+BMI < 18.5~ "Underweight",
+BMI >=18.5 & BMI < 24.9 ~ "Normal weight",
+TRUE ~ "Obese"))
+dim(Diabetes)
+
+```
