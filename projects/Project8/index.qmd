@@ -1,0 +1,38 @@
+---
+title: "Predicting diabetes risk"
+format:
+  html:
+    code-fold: true
+execute:
+  echo: true
+author: "Hamza Rahal"
+date: "2024-10-17"
+categories: [project, code, analysis]
+---
+
+# **Logistic Regression in R -** Predicting diabetes risk
+
+## Definition
+
+Logistic regression is a statistical analysis method to predict a binary outcome, such as yes or no, based on prior observations of a data set.
+A logistic regression model predicts a dependent data variable by analyzing the relationship between one or more existing independent variables. For example, in health, Logistic regression can also be used in the following areas:
+• To identify risk factors and plan preventive measures;
+• In drug research to tease apart the effectiveness of medicines on health outcomes across age, gender
+and ethnicity;
+
+## About the project
+
+I used data of 318 individuals with and without diabetes type 2.The aim is to examine the relationship
+between age, gender, BMI, diet type, smoking status and family history of disease and build a model for
+predicting diabetes risk
+
+### Importing data into R and loading packages
+
+```{r}
+Diabetes <- read.csv("diabetes.csv")
+if(!require(pacman)) install.packages("pacman")
+## Loading required package: pacman
+pacman::p_load( tidyverse, janitor, plotrix, gtsummary, survival )
+```
+
+### Data manipulation and exploration
