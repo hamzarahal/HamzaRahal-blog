@@ -91,3 +91,21 @@ bold_labels()
 ```
 
 ### Testing for significance between diabetic and non diabetic
+
+```{r}
+Diabetes %>%
+select(diabetes,age,BMI,Agegroup,gender,BMIclass,smoking,familiy_history,veg) %>%
+tbl_summary(by=diabetes,
+label = list(age ~ "mean age,yrs (sd)",
+BMI~ "median BMI (IQR)",
+smoking ~ " smoking status",
+veg ~ " Diet type",
+familiy_history ~ " Family history"),
+statistic = list(age ~ "{mean}({sd})"),
+type = list(familiy_history ~ "categorical")) %>%
+bold_labels() %>%
+add_p(test = list(
+all_continuous() ~ "t.test",
+all_categorical() ~ "fisher.test")) %>%
+modify_caption("Table2: Statistical significance difference by diabetes status")
+```
