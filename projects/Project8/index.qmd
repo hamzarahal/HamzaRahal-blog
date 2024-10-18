@@ -111,3 +111,17 @@ modify_caption("Table2: Statistical significance difference by diabetes status")
 ```
 
 ### Univariate analysis of diabetes risk factors
+
+```{r}
+Diabetes %>%
+select(diabetes,Agegroup,gender,BMIclass,smoking,familiy_history,veg) %>%
+tbl_uvregression(
+method = glm,
+y = diabetes,
+method.args = list(family = binomial),
+exponentiate = TRUE) %>%
+modify_caption("Table3: Univariate analysis of diabetes risk factors") %>%
+bold_p() %>%
+italicize_levels() %>%
+bold_labels()
+```
