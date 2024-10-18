@@ -125,3 +125,16 @@ bold_p() %>%
 italicize_levels() %>%
 bold_labels()
 ```
+
+### Multivariate analysis of diabetes risk factors
+
+```{r}
+multivariate <- glm(
+diabetes~ Agegroup+BMIclass+smoking+familiy_history+veg,
+data = Diabetes, family=binomial)
+tbl_regression(multivariate, exponentiate = TRUE) %>%
+bold_p() %>%
+bold_labels() %>%
+italicize_levels() %>%
+modify_caption("Table4: Multivariate analysis of diabetes risk factors")
+```
