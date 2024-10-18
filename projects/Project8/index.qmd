@@ -62,3 +62,32 @@ TRUE ~ "Obese"))
 dim(Diabetes)
 
 ```
+
+```{r}
+table1 <- table(Diabetes$diabetes)
+piepercent <-paste0(round(100 * table1/sum(table1)), "%")
+plotrix::pie3D(table1,radius = 1.0,
+explode = 0.05,
+labels = piepercent,
+col = c("purple","orange"),
+main = "Diabetic Vs Non-diabetic compositions",
+2
+col.main="blue")
+legend("topright",
+c("Non-diabetic","diabetic"),
+cex = 0.8,
+fill =c("purple","orange") )
+```
+
+### Descriptive statistics
+
+```{r}
+descriptives <- Diabetes %>%
+select(age,BMI,diabetes,Agegroup,gender,BMIclass,smoking,veg,familiy_history)
+tbl_summary(descriptives,
+type = list(familiy_history ~ "categorical") ) %>%
+modify_caption("Table1: Descriptive statistics") %>%
+bold_labels()
+```
+
+### Testing for significance between diabetic and non diabetic
