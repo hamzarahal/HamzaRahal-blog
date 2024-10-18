@@ -109,3 +109,5 @@ all_continuous() ~ "t.test",
 all_categorical() ~ "fisher.test")) %>%
 modify_caption("Table2: Statistical significance difference by diabetes status")
 ```
+
+### Univariate analysis of diabetes risk factors
