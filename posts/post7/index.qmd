@@ -13,3 +13,17 @@ image: "Analyst.jpeg"
 In the world of clinical trials, statistical programming plays a vital role in ensuring the accuracy, validity, and integrity of data. Statistical programmers act as the bridge between raw clinical data and actionable insights, working closely with biostatisticians, data managers, and medical writers to generate reliable outputs for regulatory submissions. To excel in this field, statistical programmers need to be proficient not only in tools like SAS or R but also in understanding the essential statistical methods that drive decision-making in clinical research.
 
 This article aims to highlight the key statistical methods and analyses that every statistical programmer in the clinical domain should master.
+
+## **1. Descriptive Statistics**
+
+Before diving into complex analyses, it’s crucial to start with descriptive statistics to summarize the data. Descriptive statistics provide an overview of the study data and help identify potential issues early on.
+
+**Key Techniques:**
+
+-   **Mean, Median, and Mode**: Understand central tendency.
+
+-   **Standard Deviation and Range**: Assess data variability.
+
+-   **Frequencies and Percentages**: For categorical variables like gender, treatment groups, or adverse event counts.
+
+Descriptive statistics are often used in demographics tables to describe the baseline characteristics of study participants. These are included in clinical study reports (CSRs) to provide context for the study findings.
