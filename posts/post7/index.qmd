@@ -62,18 +62,10 @@ Survival analysis is crucial in studies where the time until an event (like deat
 
 **Key Techniques:**
 
--   
-
 -   **Kaplan-Meier Estimator**: To estimate survival probabilities over time.
-
--   
 
 -   **Log-rank Test**: For comparing survival curves between treatment groups.
 
--   
-
 -   **Cox Regression**: To analyze the effect of covariates on survival times.
-
--   
 
 Survival analysis is frequently used in oncology trials to evaluate new cancer treatments, measuring outcomes like progression-free survival or overall survival.
