@@ -27,3 +27,17 @@ Before diving into complex analyses, it’s crucial to start with descriptive st
 -   **Frequencies and Percentages**: For categorical variables like gender, treatment groups, or adverse event counts.
 
 Descriptive statistics are often used in demographics tables to describe the baseline characteristics of study participants. These are included in clinical study reports (CSRs) to provide context for the study findings.
+
+## **2. Hypothesis Testing and p-values**
+
+Hypothesis testing is fundamental in determining whether the results of a clinical trial are statistically significant. Statistical programmers must be adept at implementing various hypothesis tests to assess treatment effects.
+
+**Key Tests:**
+
+-   **t-test**: For comparing means between two groups (e.g., treatment vs. placebo).
+
+-   **Chi-square test**: For comparing proportions in categorical data (e.g., incidence of adverse events).
+
+-   **ANOVA (Analysis of Variance)**: For comparing means across multiple groups.
+
+Hypothesis tests help in assessing **efficacy endpoints**, such as whether a new drug significantly reduces blood pressure compared to a placebo.
