@@ -41,3 +41,17 @@ Hypothesis testing is fundamental in determining whether the results of a clinic
 -   **ANOVA (Analysis of Variance)**: For comparing means across multiple groups.
 
 Hypothesis tests help in assessing **efficacy endpoints**, such as whether a new drug significantly reduces blood pressure compared to a placebo.
+
+## **3. Regression Analysis**
+
+Regression analysis is essential for examining relationships between variables, making predictions, and adjusting for confounding factors. This technique is frequently used in both exploratory analyses and formal statistical models in clinical studies.
+
+**Key Techniques:**
+
+-   **Linear Regression**: For continuous outcomes (e.g., change in cholesterol levels).
+
+-   **Logistic Regression**: For binary outcomes (e.g., success or failure of treatment).
+
+-   **Cox Proportional Hazards Model**: For time-to-event data (e.g., overall survival).
+
+Regression models are widely used in analyzing the effect of treatments while controlling for covariates like age, sex, and baseline disease severity.
