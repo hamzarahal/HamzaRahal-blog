@@ -55,3 +55,25 @@ Regression analysis is essential for examining relationships between variables, 
 -   **Cox Proportional Hazards Model**: For time-to-event data (e.g., overall survival).
 
 Regression models are widely used in analyzing the effect of treatments while controlling for covariates like age, sex, and baseline disease severity.
+
+## **4. Survival Analysis**
+
+Survival analysis is crucial in studies where the time until an event (like death, disease recurrence, or recovery) is of interest. Statistical programmers need to be proficient in **Kaplan-Meier curves** and **Cox regression models**.
+
+**Key Techniques:**
+
+-   
+
+-   **Kaplan-Meier Estimator**: To estimate survival probabilities over time.
+
+-   
+
+-   **Log-rank Test**: For comparing survival curves between treatment groups.
+
+-   
+
+-   **Cox Regression**: To analyze the effect of covariates on survival times.
+
+-   
+
+Survival analysis is frequently used in oncology trials to evaluate new cancer treatments, measuring outcomes like progression-free survival or overall survival.
