@@ -76,14 +76,8 @@ In clinical trials, data is often collected at multiple time points (e.g., weekl
 
 **Key Techniques:**
 
--   
-
 -   **Mixed-Effects Models**: For analyzing repeated measurements while accounting for correlations between time points.
 
--   
-
 -   **Generalized Estimating Equations (GEE)**: For longitudinal data with correlated outcomes.
-
--   
 
 These methods are used in studies that track continuous outcomes over time, such as blood pressure, glucose levels, or quality-of-life scores.
