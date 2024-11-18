@@ -69,3 +69,21 @@ Survival analysis is crucial in studies where the time until an event (like deat
 -   **Cox Regression**: To analyze the effect of covariates on survival times.
 
 Survival analysis is frequently used in oncology trials to evaluate new cancer treatments, measuring outcomes like progression-free survival or overall survival.
+
+**5. Analysis of Repeated Measures and Longitudinal Data**
+
+In clinical trials, data is often collected at multiple time points (e.g., weekly or monthly visits). Understanding **repeated measures analysis** helps in assessing how patient responses change over time.
+
+**Key Techniques:**
+
+-   
+
+-   **Mixed-Effects Models**: For analyzing repeated measurements while accounting for correlations between time points.
+
+-   
+
+-   **Generalized Estimating Equations (GEE)**: For longitudinal data with correlated outcomes.
+
+-   
+
+These methods are used in studies that track continuous outcomes over time, such as blood pressure, glucose levels, or quality-of-life scores.
