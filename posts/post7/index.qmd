@@ -95,3 +95,17 @@ Clinical trial data is rarely perfect, and missing data is a common challenge. S
 -   **Sensitivity Analysis**: To assess the impact of different missing data assumptions.
 
 Proper handling of missing data ensures the robustness of the primary efficacy analysis, especially in long-term clinical trials.
+
+**7. Non-parametric Methods**
+
+When the data doesn’t meet the assumptions of normality or homogeneity, non-parametric methods become essential.
+
+**Key Techniques:**
+
+-   **Mann-Whitney U Test**: For comparing two independent groups.
+
+-   **Kruskal-Wallis Test**: For comparing more than two groups.
+
+-   **Spearman’s Rank Correlation**: For assessing the relationship between two variables.
+
+Non-parametric tests are used in cases where data is **skewed** or does not fit traditional distributional assumptions, such as patient-reported outcomes.
