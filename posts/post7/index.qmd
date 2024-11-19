@@ -94,6 +94,4 @@ Clinical trial data is rarely perfect, and missing data is a common challenge. S
 
 -   **Sensitivity Analysis**: To assess the impact of different missing data assumptions.
 
--   
-
 Proper handling of missing data ensures the robustness of the primary efficacy analysis, especially in long-term clinical trials.
