@@ -111,3 +111,19 @@ When the data doesn’t meet the assumptions of normality or homogeneity, non-pa
 Non-parametric tests are used in cases where data is **skewed** or does not fit traditional distributional assumptions, such as patient-reported outcomes.
 
 ## **8. Sample Size Calculation and Power Analysis**
+
+Accurately estimating the sample size is crucial in clinical trials to ensure that the study is adequately powered to detect a meaningful effect. Statistical programmers often collaborate with biostatisticians to perform these calculations.
+
+**Key Considerations:**
+
+-   
+
+-   **Power Analysis**: To determine the probability of detecting an effect if one exists.
+
+-   
+
+-   **Sample Size Calculation**: Based on anticipated effect size, variability, and significance level.
+
+-   
+
+Ensuring an appropriate sample size is crucial for regulatory submissions, where underpowered studies may fail to demonstrate efficacy.
