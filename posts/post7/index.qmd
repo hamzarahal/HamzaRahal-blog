@@ -116,14 +116,8 @@ Accurately estimating the sample size is crucial in clinical trials to ensure th
 
 **Key Considerations:**
 
--   
-
 -   **Power Analysis**: To determine the probability of detecting an effect if one exists.
 
--   
-
 -   **Sample Size Calculation**: Based on anticipated effect size, variability, and significance level.
-
--   
 
 Ensuring an appropriate sample size is crucial for regulatory submissions, where underpowered studies may fail to demonstrate efficacy.
