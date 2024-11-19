@@ -81,3 +81,19 @@ In clinical trials, data is often collected at multiple time points (e.g., weekl
 -   **Generalized Estimating Equations (GEE)**: For longitudinal data with correlated outcomes.
 
 These methods are used in studies that track continuous outcomes over time, such as blood pressure, glucose levels, or quality-of-life scores.
+
+**6. Handling Missing Data**
+
+Clinical trial data is rarely perfect, and missing data is a common challenge. Statistical programmers must be familiar with techniques to handle missingness appropriately to avoid biased results.
+
+**Key Techniques:**
+
+-   **Last Observation Carried Forward (LOCF)**: Simple imputation method.
+
+-   **Multiple Imputation**: For a more robust approach.
+
+-   **Sensitivity Analysis**: To assess the impact of different missing data assumptions.
+
+-   
+
+Proper handling of missing data ensures the robustness of the primary efficacy analysis, especially in long-term clinical trials.
