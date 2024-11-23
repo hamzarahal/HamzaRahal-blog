@@ -1,7 +1,7 @@
 ---
 title: "Essential Statistical Methods and Analyses for the Clinical Domain: A Guide for Statistical Programmers"
 author: "Hamza Rahal"
-date: "2024-10-06"
+date: "2024-10-07"
 categories: [thoughts]
 image: "Analyst.jpeg"
 ---
