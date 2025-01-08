@@ -108,7 +108,7 @@ When the data doesn’t meet the assumptions of normality or homogeneity, non-pa
 
 -   **Spearman’s Rank Correlation**: For assessing the relationship between two variables.
 
-Non-parametric tests are used in cases where data is **skewed** or does not fit traditional distributional assumptions, such as patient-reported outcomes.
+Non-parametric tests are used in cases where data is skewed or does not fit traditional distributional assumptions, such as patient-reported outcomes.
 
 ## **8. Sample Size Calculation and Power Analysis**
 
