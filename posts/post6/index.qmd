@@ -1,7 +1,7 @@
 ---
 title: "The Importance of Agile/Scrum Methodology in Enhancing Statistical Programming and Analysis Efficiency in the Pharmaceutical Industry and Clinical Research"
 author: "Hamza Rahal"
-date: "2024-09-15"
+date: "2024-09-16"
 categories: [thoughts]
 image: "Agile.jpeg"
 ---
